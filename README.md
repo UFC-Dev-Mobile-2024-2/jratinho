@@ -11,7 +11,7 @@ preenchendo aos poucos...
 - Letícia Maciel Silva
 
 ## Links importantes
-[Figma](https://www.figma.com/design/naLpwzBKr3uIce7FBNHFfs/MOBILE---J.-RATINHO?node-id=0-1&t=c0wzitMJZpPawnDs-1)
+[Figma](https://www.figma.com/design/BRgTJDPZXjfLyumjvQyMKV/MOBILE---J.-RATINHO?node-id=0-1&t=79v2J9IvbM1ndKVd-1)
 [Repositório](https://github.com/andissudd/jratinho)
 
 ## O que vai ser a aplicação
