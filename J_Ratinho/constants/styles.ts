@@ -7,7 +7,10 @@ export const styles = StyleSheet.create({
     h2: {
         fontSize: 24
     },
+    p: {
+        fontsize: 16
+    },
     label: {
         fontSize: 16
-    }
+    },
 });
