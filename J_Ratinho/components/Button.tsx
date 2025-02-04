@@ -29,7 +29,7 @@ export default function Button({label, color, route, onPress}: Props) {
 
     return (
         <View style={local.container}>
-            <Pressable style={[local.button, {backgroundColor: colors[color]}]}>
+            <Pressable style={[local.button, {backgroundColor: colors.dark[color]}]}>
                 {content}
             </Pressable>
         </View>
@@ -50,6 +50,6 @@ const local = StyleSheet.create({
         justifyContent: "center",
     },
     label: {
-        color: colors.white,
+        color: colors.light.white,
     }
 });
