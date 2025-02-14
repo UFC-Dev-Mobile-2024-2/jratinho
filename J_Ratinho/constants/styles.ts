@@ -18,13 +18,4 @@ export const styles = StyleSheet.create({
     marca: {
         width: 128
     },
-    input: {
-        height: 32,
-        width: 256,
-        margin: 8,
-        borderWidth: 2,
-        borderRadius: 16,
-        padding: 10,
-        borderColor: colors.dark.blue
-    },
 });

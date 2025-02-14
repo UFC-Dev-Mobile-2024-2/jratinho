@@ -1,8 +1,7 @@
 import React from "react";
-import {StyleSheet, View, Text, Image, TextInput} from "react-native";
+import {StyleSheet, View, Image} from "react-native";
+import {Text, TextInput, Button} from "react-native-paper";
 import {Link} from "expo-router";
-
-import Button from "@/components/Button";
 
 import {colors} from "@/constants/colors";
 import {styles} from "@/constants/styles";
@@ -14,28 +13,37 @@ export default function Login() {
     return (
         <View style={local.container}>
             <Image style={styles.marca} source={require("@/assets/images/marca.svg")} resizeMode="contain"/>
-            <Text style={[styles.h1, local.h1]}>Criar sua conta</Text>
-            <View>
+            <Text style={local.h1} variant="headlineLarge">Crie sua conta</Text>
+            <View style={{width: "80%"}}>
                 <TextInput
-                    style={styles.input}
+                    label="Nome"
+                    mode="outlined"
+                    style={local.input}
                     onChangeText={onChangeText}
-                    placeholder="Digite aqui seu nome"
                     value={text}
                 />
                 <TextInput
-                    style={styles.input}
+                    label="E-mail"
+                    mode="outlined"
+                    style={local.input}
                     onChangeText={onChangeText}
-                    placeholder="Digite aqui seu e-mail"
                     value={text}
                 />
                 <TextInput
-                    style={styles.input}
+                    label="Senha"
+                    mode="outlined"
+                    style={local.input}
                     onChangeText={onChangeNumber}
                     value={number}
-                    placeholder="Digite aqui sua senha"
                 />
+                <Text style={{marginBottom: 16}} variant="bodySmall">Sua senha deve conter ao menos 8 caracteres.</Text>
             </View>
-            <Button label="Entrar" color="green" route="/"/>
+            <Button style={local.button} mode="contained">
+                <Link href="/">Criar conta</Link>
+            </Button>
+            <Button style={local.button}>
+                <Link href="/login">Já tem uma conta? Faça login</Link>
+            </Button>
         </View>
     )
 }
@@ -43,10 +51,17 @@ export default function Login() {
 const local = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: colors.dark.white,
         alignItems: "center",
     },
     h1: {
-        color: colors.dark.blue,
+        color: colors.light.tertiary,
+        marginBottom: 32,
     },
+    input: {
+        marginBottom: 8
+    },
+    button: {
+        minWidth: 256,
+        marginBottom: 8
+    }
 });

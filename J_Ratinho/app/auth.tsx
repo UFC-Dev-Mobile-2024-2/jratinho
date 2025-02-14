@@ -1,6 +1,6 @@
-import {StyleSheet, View, Platform, Text, Image} from "react-native";
-
-import Button from "@/components/Button";
+import {StyleSheet, View, Platform, Image} from "react-native";
+import {Text, Button} from "react-native-paper";
+import {Link} from "expo-router";
 
 import {colors} from "@/constants/colors";
 import {styles} from "@/constants/styles";
@@ -9,11 +9,13 @@ export default function Auth() {
     return (
         <View style={local.container}>
             <Image style={styles.marca} source={require("@/assets/images/marca.svg")} resizeMode="contain"/>
-            <Text style={[styles.h1, local.h1]}>
-                Seja bem vindo ao aplicativo J. Ratinho!
-            </Text>
-            <Button label="Cadastre-se agora!" color="yellow" route="/signin"/>
-            <Button label="Já tenho uma conta" color="green" route="/login"/>
+            <Text style={local.h2} variant="headlineLarge">Seja bem-vindo(a) ao aplicativo da fundação J. Ratinho</Text>
+            <Button style={local.button} mode="contained">
+                <Link href="/signin">Cadastre-se agora!</Link>
+            </Button>
+            <Button style={local.button} mode="contained-tonal">
+                <Link href="/login">Já tenho uma conta</Link>
+            </Button>
         </View>
     );
 }
@@ -21,13 +23,18 @@ export default function Auth() {
 const local = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: colors.light.blue,
+        backgroundColor: colors.light.tertiary,
         alignItems: "center",
-    },
-    h1: {
-        maxWidth: 320,
         textAlign: "center",
-        color: colors.light.white,
+    },
+    h2: {
+        maxWidth: 300,
+        textAlign: "center",
+        color: "#FFFFFF",
         marginBottom: 32,
     },
+    button: {
+        minWidth: 256,
+        margin: 8,
+    }
 });
