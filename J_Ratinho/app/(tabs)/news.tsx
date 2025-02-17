@@ -24,7 +24,19 @@ const News = () => {
                         headerTitleAlign: "center",
                     }}
                     />
-                    <Stack.Screen name="NewsInfo" component={NewsInfo} />
+                    <Stack.Screen name="NewsInfo" component={NewsInfo} options={{
+                        title: "Notícias",
+                        headerStyle: {
+                            backgroundColor: "#5087ca", // Cor de fundo do cabeçalho
+                        },
+                        headerTintColor: "#fff", // Cor do texto do cabeçalho
+                        headerTitleStyle: {
+                            fontWeight: "bold", // Estilo do título
+                        },
+                        headerTitleAlign: "center",
+                    }}
+                        
+                    />
                 </Stack.Navigator>
             </SafeAreaView>
         </SafeAreaProvider>
