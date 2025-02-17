@@ -8,11 +8,12 @@ import {
   Image,
 } from "react-native";
 import { SafeAreaView, SafeAreaProvider } from "react-native-safe-area-context";
-import { Button } from "react-native-paper";
+import CardSobre from "@/components/__tests__/sobre/card";
 
 const ViewBoxesWithColorAndText = () => {
   const onPress = () => {
     Alert.alert("Button pressed");
+    
   };
 
   return (
@@ -20,24 +21,11 @@ const ViewBoxesWithColorAndText = () => {
       <SafeAreaView style={styles.safeArea}>
         <View style={styles.container}>
           <Text style={styles.text}>
-            Seja bem vindo ao{"\n"} aplicativo J.Ratinho
+            Que tal conhecer mais?
           </Text>
           <View>
-            <Button
-              style={styles.button_register}
-              onPress={onPress}
-              textColor="white"
-            >
-              Cadastre-se agora!
-            </Button>
-
-            <Button
-              style={styles.button_login}
-              textColor="white"
-              onPress={onPress}
-            >
-              Já tenho uma conta
-            </Button>
+          <CardSobre />
+  
           </View>
 
           <View style={styles.image_container}>
