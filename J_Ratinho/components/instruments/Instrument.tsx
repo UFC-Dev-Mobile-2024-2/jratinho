@@ -13,7 +13,7 @@ type InstrumentProps = {
 }
 const Instrument = (props: InstrumentProps) => {
   return (
-    <View style={[styles.container, {width: props.InstrumentSize, height: props.InstrumentSize}]}>
+    <View style={[styles.container]}>
       {props.InstrumentVariant === 'saxofone' && <Saxofone width={props.InstrumentSize} height={props.InstrumentSize} />}
       {props.InstrumentVariant === 'trompete' && <Trompete width={props.InstrumentSize} height={props.InstrumentSize} />}
       {props.InstrumentVariant === 'tuba' && <Tuba width={props.InstrumentSize} height={props.InstrumentSize} />}
@@ -25,9 +25,10 @@ const Instrument = (props: InstrumentProps) => {
 
 const styles = StyleSheet.create({
   container: {
+    backgroundColor: 'red',
     flex: 1,
-    // justifyContent: 'center',
-    // alignItems: 'center',
+    justifyContent: 'center',
+    alignItems: 'center',
   },
 });
  export default Instrument;
