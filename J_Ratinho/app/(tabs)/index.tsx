@@ -22,3 +22,5 @@ export default function App() {
 
     const styles = StyleSheet.create({
               });
+    const styles = StyleSheet.create({
+              });
