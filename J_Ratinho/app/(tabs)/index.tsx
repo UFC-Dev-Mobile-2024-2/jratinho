@@ -1,7 +1,6 @@
 import React from 'react';
 import { StyleSheet, Button, View, Text, Alert, TouchableOpacity } from 'react-native';
 import { SafeAreaView, SafeAreaProvider } from 'react-native-safe-area-context';
-
 const ViewBoxesWithColorAndText = () => {
   const onPress = () => {
     Alert.alert('Button pressed');
@@ -14,6 +13,7 @@ const ViewBoxesWithColorAndText = () => {
           <Text>Seja bem vindo ao aplicativo{'\n'}J.Ratinho</Text>
           <TouchableOpacity style={styles.button} onPress={onPress}>
             <Text>Entrar</Text>
+            
           </TouchableOpacity>
         </View>
       </SafeAreaView>
