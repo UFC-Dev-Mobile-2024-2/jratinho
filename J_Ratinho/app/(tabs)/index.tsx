@@ -3,30 +3,31 @@ import {StyleSheet, View, Text, Platform} from "react-native";
 import {Link} from "expo-router";
 import {Button, FAB} from "react-native-paper";
 
-import ExerciceCard from '@/components/exercises/ExerciseCard';
+import {Colors} from '@/constants/Colors';
+
+import ExerciceCard from '@/components/exercises/ExerciseCard'; 
 import Instrument from '@/components/instruments/Instrument';
 import InstrumentButton from '@/components/exercises/InstrumentButton';
 import QuestionOption from '@/components/exercises/QuestionOption';
+import ProgressButton from '@/components/exercises/ProgressButton';
 
 export default function App() {
     return (
         <View style={styles.container}>
-        {/* <InstrumentButton/> */}
+        {/* <InstrumentButton InstrumentSize={120} InstrumentVariant='saxofone' InstrumentRotation='-30deg' OptionState="" onPress={() => alert('Fon fon!')}/> */}
 
-        {/* <ExerciceCard>
-        </ExerciceCard> */}
+        <ExerciceCard InstrumentVariant='saxofone' InstrumentSize={120} InstrumentRotation='-30deg' MainColor={Colors.dark.orange} CoverColor={Colors.light.orange} TextColor='#ffffff'>
+        </ExerciceCard>
         
         {/* <FAB icon="close"
+        size="small"
         style={styles.fab}
         onPress={() => console.log('Pressed')}
         /> */}
 
-        {/* <Instrument InstrumentVariant='tuba' InstrumentSize = {200} ></Instrument>
-        <Instrument InstrumentVariant='saxofone' InstrumentSize = {200} ></Instrument> */}
+        {/* <QuestionOption OptionState=""/> */}
 
-        <QuestionOption OptionState=""/>
-        <QuestionOption OptionState="wrong"/>
-        <QuestionOption OptionState="right"/>
+        {/* <ProgressButton CorrectAnswer={true}></ProgressButton> */}
         
         
     </View>

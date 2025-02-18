@@ -12,7 +12,7 @@ type OptionProps = {
 
 const QuestionOption = (props: OptionProps) => (
     <View>
-        {props.OptionState === '' && <Button buttonColor={Colors.light.cian} mode='contained' onPress={() => alert('Button pressed!')}>Alternativaaah</Button>}
+        {props.OptionState === '' && <Button buttonColor={Colors.light.cian} mode='contained'>Alternativaaah</Button>}
         {props.OptionState === 'right' && <Button buttonColor={Colors.dark.green} mode='contained' onPress={() => alert('Button pressed!')}>Alternativaaah</Button>}
         {props.OptionState === 'wrong' && <Button buttonColor={Colors.dark.red} mode='contained' onPress={() => alert('Button pressed!')}>Alternativaaah</Button>}
     </View>

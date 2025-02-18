@@ -1,25 +1,49 @@
 import React from 'react';
-import {StyleSheet} from "react-native";
+import {Pressable, StyleSheet, TouchableOpacity, View} from "react-native";
 import { Avatar, Button, Card, Text } from 'react-native-paper';
 import { useFonts } from 'expo-font';
-import { fonts } from '@/constants/Fonts';
 
-const ExerciceCard = () => (
-  <Card style={styles.card_main}>
-    <Card.Cover style={{ borderRadius: 0 }} source={{ uri: 'https://picsum.photos/700' }} />
+import { fonts } from '@/constants/Fonts';
+import Instrument from '@/components/instruments/Instrument';
+import {Colors} from '@/constants/Colors';
+
+type ExerciseCardProps = {
+  // onPress?: () => void;
+  InstrumentVariant: string;
+  InstrumentSize: number;
+  InstrumentRotation: string;
+  MainColor: string;
+  CoverColor: string;
+  TextColor: string;
+}
+
+const ExerciceCard = (props: ExerciseCardProps) => (
+  <TouchableOpacity>
+    <Card style={[styles.cardMain, {backgroundColor: props.MainColor}]}>
+    <View style={[styles.customCardCover, {backgroundColor: props.CoverColor}]}>
+      <Instrument InstrumentVariant='saxofone' InstrumentSize={120} InstrumentRotation='-30deg'></Instrument>
+    </View>
     <Card.Content style={{ padding: 10 }}>
-      <Text style={styles.card_title} variant="titleLarge">Card title</Text>
-      <Text variant="bodyMedium">Card content</Text>
+      <Text style={[styles.cardTitle, {color: props.TextColor}]} variant="titleLarge">Card title</Text>
+      <Text style={{color: props.TextColor}} variant="bodyMedium">Card content</Text>
     </Card.Content>
   </Card>
+  </TouchableOpacity>
 );
 
 const styles = StyleSheet.create({
-  card_main: {
+  cardMain: {
     borderRadius: 10,
     overflow: 'hidden',
   },
-  card_title: {
+  customCardCover: {
+    height: 150,
+    width: '100%',
+    backgroundColor: 'red',
+    alignItems: 'center',
+    padding: 10,
+  },
+  cardTitle: {
     fontSize: 20,
     fontWeight: 'bold',
     fontFamily: 'Capriola_400Regular',
