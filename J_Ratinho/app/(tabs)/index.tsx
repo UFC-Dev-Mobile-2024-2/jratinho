@@ -8,12 +8,12 @@ import {
   Image,
 } from "react-native";
 import { SafeAreaView, SafeAreaProvider } from "react-native-safe-area-context";
-import CardSobre from "@/components/__tests__/sobre/card";
+import CardSobre from '@/components/sobre/CardSobre';
 
-const ViewBoxesWithColorAndText = () => {
+function ViewBoxesWithColorAndText() {
   const onPress = () => {
     Alert.alert("Button pressed");
-    
+
   };
 
   return (
@@ -24,21 +24,25 @@ const ViewBoxesWithColorAndText = () => {
             Que tal conhecer mais?
           </Text>
           <View>
-          <CardSobre />
-  
+            <CardSobre cardTitle="O aplicativo" cardParagraph="O propósito do nosso aplicativo">
+            </CardSobre>
+
+            <CardSobre cardTitle="O Mascote" cardParagraph="Processo e significado do nosso mascote Ratinho">
+            </CardSobre>
+          
           </View>
+          
 
           <View style={styles.image_container}>
             <Image
               source={require("../../assets/images/home_image.png")}
-              style={styles.image}
-            />
+              style={styles.image} />
           </View>
         </View>
       </SafeAreaView>
     </SafeAreaProvider>
   );
-};
+}
 
 const styles = StyleSheet.create({
   safeArea: {
