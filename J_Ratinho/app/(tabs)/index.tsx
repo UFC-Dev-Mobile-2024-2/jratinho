@@ -1,5 +1,5 @@
-import {StyleSheet, View} from "react-native";
-import {Text, Button, Card} from "react-native-paper";
+import {StyleSheet, View, Image} from "react-native";
+import {Text, Button, Card, Avatar} from "react-native-paper";
 import {Link} from "expo-router";
 
 import {colors} from "@/constants/colors";
@@ -8,6 +8,12 @@ import {styles} from "@/constants/styles";
 export default function Index() {
     return (
         <View style={local.container}>
+            <View style={local.header}>
+                <Image style={styles.marca} source={require("@/assets/images/marca.svg")} resizeMode="contain"/>
+                <Link style={local.profile} href="/profile">
+                    <Avatar.Image  size={40} source={require("@/assets/images/rato.png")}/>
+                </Link>
+            </View>
             <Text variant="headlineLarge">Bem vindo, aluno!</Text>
             <Text style={{marginBottom: 32}}variant="titleMedium">Vamos aprender e se divertir?</Text>
             <Card style={local.card}>
@@ -25,11 +31,22 @@ export default function Index() {
 const local = StyleSheet.create({
     container: {
         flex: 1,
-        padding: 32,
+        paddingLeft: 16,
+        paddingRight: 16,
         alignItems: "center",
+    },
+    header: {
+        flex: 1,
+        flexDirection: "row",
+        alignItems: "center",
+        position: "relative",
     },
     card: {
         marginBottom: 8,
         width: "100%"
+    },
+    profile: {
+        position: "absolute",
+        right: -128
     }
 });
