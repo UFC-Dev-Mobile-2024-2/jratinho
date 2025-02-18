@@ -1,13 +1,11 @@
 import {StyleSheet, View, Text} from "react-native";
 
-const Settings = () => {
+export default function News() {
     return (
         <View>
-            <Text>Settings</Text>
+            <Text>Notícias</Text>
         </View>
     );
 };
 
 const styles = StyleSheet.create({});
-
-export default Settings;

@@ -7,18 +7,36 @@ export default function TabLayout() {
             <Tabs.Screen
                 name="index"
                 options={{
-                    title: "Home",
+                    title: "Início",
                     tabBarIcon: ({ color }) => (
                         <Feather name="home" size={24} color={color} />
                     ),
             }}
             />
             <Tabs.Screen
-                name="settings"
+                name="about"
                 options={{
-                    title: "Setting",
+                    title: "Sobre nós",
                     tabBarIcon: ({ color }) => (
-                        <Feather name="settings" size={24} color={color} />
+                        <Feather name="users" size={24} color={color} />
+                    ),
+                }}
+            />
+            <Tabs.Screen
+                name="donate"
+                options={{
+                    title: "Doações",
+                    tabBarIcon: ({ color }) => (
+                        <Feather name="dollar-sign" size={24} color={color} />
+                    ),
+                }}
+            />
+            <Tabs.Screen
+                name="news"
+                options={{
+                    title: "Notícias",
+                    tabBarIcon: ({ color }) => (
+                        <Feather name="bell" size={24} color={color} />
                     ),
                 }}
             />

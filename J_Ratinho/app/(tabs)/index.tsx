@@ -11,11 +11,11 @@ export default function Index() {
             <Text variant="headlineLarge">Bem vindo, aluno!</Text>
             <Text style={{marginBottom: 32}}variant="titleMedium">Vamos aprender e se divertir?</Text>
             <Card style={local.card}>
-                <Card.Cover source={{ uri: 'https://picsum.photos/700' }} />
+                <Card.Cover style={{backgroundColor: "#9DB1F3"}}/>
                 <Card.Title title="Praticar" subtitle="Descubra as notas!"/>
             </Card>
             <Card style={local.card}>
-                <Card.Cover source={{ uri: 'https://picsum.photos/700' }} />
+                <Card.Cover style={{backgroundColor: "#FB8B38"}}/>
                 <Card.Title title="Quizzes" subtitle="Descubra as notas!"/>
             </Card>
         </View>
