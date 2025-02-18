@@ -23,7 +23,7 @@ const About = () => (
       </Text>
       <Text style={styles.icon}>
         <FontAwesome5 name="users" size={24} color="white" />
-        Sobre Nós
+        Sobre NósA
       </Text>
       <Text style={styles.icon}>
         <Feather name="bell" size={24} color="white" />
