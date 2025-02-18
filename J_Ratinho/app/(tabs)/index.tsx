@@ -1,86 +1,20 @@
-import React from "react";
-import {
-  StyleSheet,
-  View,
-  Text,
-  Alert,
-  TouchableOpacity,
-  Image,
-} from "react-native";
-import { SafeAreaView, SafeAreaProvider } from "react-native-safe-area-context";
-import CardSobre from '@/components/sobre/CardSobre';
+import React from 'react';
+import {StyleSheet, View, Text, Platform} from "react-native";
+import {Link} from "expo-router";
+import {Button, FAB} from "react-native-paper";
 
-function ViewBoxesWithColorAndText() {
-  const onPress = () => {
-    Alert.alert("Button pressed");
+import {Colors} from '@/constants/Colors';
 
-  };
 
-  return (
-    <SafeAreaProvider>
-      <SafeAreaView style={styles.safeArea}>
+
+export default function App() {
+    return (
         <View style={styles.container}>
-          <Text style={styles.text}>
-            Que tal conhecer mais?
-          </Text>
-          <View>
-            <CardSobre cardTitle="O aplicativo" cardParagraph="O propósito do nosso aplicativo">
-            </CardSobre>
-
-            <CardSobre cardTitle="O Mascote" cardParagraph="Processo e significado do nosso mascote Ratinho">
-            </CardSobre>
-          
-          </View>
-          
-
-          <View style={styles.image_container}>
-            <Image
-              source={require("../../assets/images/home_image.png")}
-              style={styles.image} />
-          </View>
-        </View>
-      </SafeAreaView>
-    </SafeAreaProvider>
-  );
+                
+        
+    </View>
+    );
 }
 
-const styles = StyleSheet.create({
-  safeArea: {
-    flex: 1,
-  },
-  container: {
-    backgroundColor: "#9DB1F3",
-    flex: 1,
-    justifyContent: "space-between",
-  },
-  text: {
-    textAlign: "center",
-    fontSize: 28,
-    marginBottom: 10,
-    color: "white",
-    marginTop: 170,
-  },
-  button_register: {
-    alignItems: "center",
-    backgroundColor: "#ffC000",
-    padding: 10,
-    marginHorizontal: 50,
-    marginBottom: 10,
-  },
-  button_login: {
-    alignItems: "center",
-    backgroundColor: "#87a224",
-    padding: 10,
-    marginHorizontal: 50,
-  },
-  image_container: {
-    alignItems: "center",
-  },
-  image: {
-    width: "100%",
-    height: 350,
-    resizeMode: "contain",
-  },
-});
-
-export default ViewBoxesWithColorAndText;
+    const styles = StyleSheet.create({
+              });
