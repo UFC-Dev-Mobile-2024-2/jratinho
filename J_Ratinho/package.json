@@ -15,10 +15,14 @@
     "preset": "jest-expo"
   },
   "dependencies": {
+    "@expo-google-fonts/capriola": "^0.2.3",
+    "@expo-google-fonts/dm-sans": "^0.2.3",
     "@expo/vector-icons": "^14.0.2",
     "@react-navigation/bottom-tabs": "^7.2.0",
     "@react-navigation/native": "^7.0.14",
+    "@react-navigation/stack": "^7.1.1",
     "expo": "~52.0.26",
+    "expo-app-loading": "^2.1.1",
     "expo-blur": "~14.0.2",
     "expo-constants": "~17.0.4",
     "expo-font": "~13.0.3",
@@ -39,6 +43,8 @@
     "react-native-reanimated": "~3.16.1",
     "react-native-safe-area-context": "4.12.0",
     "react-native-screens": "~4.4.0",
+    "react-native-svg": "15.8.0",
+    "react-native-svg-transformer": "^1.5.0",
     "react-native-web": "~0.19.13",
     "react-native-webview": "13.12.5"
   },
