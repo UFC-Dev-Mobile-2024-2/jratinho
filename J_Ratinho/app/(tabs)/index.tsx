@@ -3,6 +3,9 @@ import {StyleSheet, View, Image} from "react-native";
 import {Text, Button, Card, Avatar} from "react-native-paper";
 import {Link} from "expo-router";
 import {styles} from "@/constants/styles";
+import {Colors} from "@/constants/Colors";
+
+import ExerciceCard from '@/components/exercises/ExerciseCard';
 
 export default function Index() {
     return (
@@ -15,14 +18,15 @@ export default function Index() {
             </View>
             <Text variant="headlineLarge">Bem vindo, aluno!</Text>
             <Text style={{marginBottom: 32}}variant="titleMedium">Vamos aprender e se divertir?</Text>
-            <Card style={local.card}>
-                <Card.Cover style={{backgroundColor: "#9DB1F3"}}/>
-                <Card.Title title="Praticar" subtitle="Descubra as notas!"/>
-            </Card>
-            <Card style={local.card}>
-                <Card.Cover style={{backgroundColor: "#FB8B38"}}/>
-                <Card.Title title="Quizzes" subtitle="Descubra as notas!"/>
-            </Card>
+            
+            <ExerciceCard InstrumentVariant='saxofone' InstrumentSize={200} InstrumentRotation='-30deg' MainColor={Colors.dark.orange} CoverColor={Colors.light.orange} TextColor='#ffffff'>
+            </ExerciceCard>
+
+            <ExerciceCard InstrumentVariant='saxofone' InstrumentSize={200} InstrumentRotation='-30deg' MainColor={Colors.dark.orange} CoverColor={Colors.light.orange} TextColor='#ffffff'>
+            </ExerciceCard>
+
+
+
         </View>
     )
 }

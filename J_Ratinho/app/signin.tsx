@@ -3,7 +3,7 @@ import {StyleSheet, View, Image} from "react-native";
 import {Text, TextInput, Button} from "react-native-paper";
 import {Link} from "expo-router";
 
-import {colors} from "@/constants/Colors";
+import {Colors} from "@/constants/Colors";
 import {styles} from "@/constants/styles";
 
 export default function Login() {
@@ -12,7 +12,7 @@ export default function Login() {
 
     return (
         <View style={local.container}>
-            <Image style={styles.marca} source={require("@/assets/images/marca.svg")} resizeMode="contain"/>
+            <Image source={require("@/assets/images/marca.svg")} resizeMode="contain"/>
             <Text style={local.h1} variant="headlineLarge">Crie sua conta</Text>
             <View style={{width: "80%"}}>
                 <TextInput
@@ -54,7 +54,7 @@ const local = StyleSheet.create({
         alignItems: "center",
     },
     h1: {
-        color: colors.light.tertiary,
+        color: Colors.light.cian,
         marginBottom: 32,
     },
     input: {

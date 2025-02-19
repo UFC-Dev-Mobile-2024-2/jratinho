@@ -31,10 +31,6 @@
           "imageWidth": 200,
           "resizeMode": "contain",
           "backgroundColor": "#ffffff"
-        },
-        "expo-font",
-        {
-          "fonts": ["../assets/fonts/Capriola-Regular.ttf"]
         }
       ]
     ],

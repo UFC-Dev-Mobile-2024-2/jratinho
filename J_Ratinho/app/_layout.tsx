@@ -1,11 +1,12 @@
+import React from "react";
 import {Slot, Stack} from "expo-router";
 import {useColorScheme, View} from "react-native";
 import {MD3DarkTheme, MD3LightTheme, PaperProvider, Appbar} from "react-native-paper";
 
-import {colors} from "@/constants/Colors";
+import {Colors} from "@/constants/Colors";
 
-const dark = {...MD3DarkTheme, colors: colors.dark};
-const light = {...MD3LightTheme, colors: colors.light};
+const dark = {...MD3DarkTheme, colors: Colors.dark};
+const light = {...MD3LightTheme, colors: Colors.light};
 
 export default function RootLayout() {
     return (

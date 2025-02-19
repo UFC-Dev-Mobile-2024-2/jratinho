@@ -12,12 +12,12 @@ export default function App() {
 
     // Mock de imagens (substituir pelos caminhos corretos)
     const images = [
-        { id: 1, source: { uri: "https://upload.wikimedia.org/wikipedia/commons/thumb/c/cc/O_Xaropinho.jpg/1200px-O_Xaropinho.jpg" } },
-        { id: 2, source: { uri: "https://upload.wikimedia.org/wikipedia/commons/thumb/c/cc/O_Xaropinho.jpg/1200px-O_Xaropinho.jpg" } },
-        { id: 3, source: { uri: "https://previews.123rf.com/images/mindsparx/mindsparx2305/mindsparx230501078/203593091-ratinho-cinza-fofo-com-um-peda%C3%A7o-de-queijo-sobre-um-fundo-claro.jpg" } },
-        { id: 4, source: { uri: "https://upload.wikimedia.org/wikipedia/commons/thumb/c/cc/O_Xaropinho.jpg/1200px-O_Xaropinho.jpg" } },
-        { id: 5, source: { uri: "https://previews.123rf.com/images/mindsparx/mindsparx2305/mindsparx230501078/203593091-ratinho-cinza-fofo-com-um-peda%C3%A7o-de-queijo-sobre-um-fundo-claro.jpg" } },
-        { id: 6, source: { uri: "https://upload.wikimedia.org/wikipedia/commons/thumb/c/cc/O_Xaropinho.jpg/1200px-O_Xaropinho.jpg" } }
+        { id: 1, source: { uri: "https://i.pinimg.com/736x/15/59/8e/15598ed1ac362bee9cf0f0bde9a28b10.jpg" } },
+        { id: 2, source: { uri: "https://i.pinimg.com/736x/15/59/8e/15598ed1ac362bee9cf0f0bde9a28b10.jpg" } },
+        { id: 3, source: { uri: "https://i.pinimg.com/736x/15/59/8e/15598ed1ac362bee9cf0f0bde9a28b10.jpg" } },
+        { id: 4, source: { uri: "https://i.pinimg.com/736x/15/59/8e/15598ed1ac362bee9cf0f0bde9a28b10.jpg" } },
+        { id: 5, source: { uri: "https://i.pinimg.com/736x/15/59/8e/15598ed1ac362bee9cf0f0bde9a28b10.jpg" } },
+        { id: 6, source: { uri: "https://i.pinimg.com/736x/15/59/8e/15598ed1ac362bee9cf0f0bde9a28b10.jpg" } }
     ];
 
     return (
@@ -25,7 +25,7 @@ export default function App() {
 
           <View style={styles.imageContainer}>
             <ProfileImage
-            source={{ uri: "https://upload.wikimedia.org/wikipedia/commons/thumb/c/cc/O_Xaropinho.jpg/1200px-O_Xaropinho.jpg" }} 
+            source={{ uri: "https://i.pinimg.com/736x/15/59/8e/15598ed1ac362bee9cf0f0bde9a28b10.jpg" }} 
             selected={false} 
             onSelect={() => setSelectedImage(null)}
             />
