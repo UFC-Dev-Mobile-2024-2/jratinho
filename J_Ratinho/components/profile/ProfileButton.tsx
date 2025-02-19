@@ -15,7 +15,7 @@ type ProfileButtonProps = {
 
 const ProfileButton = (props: ProfileButtonProps) => (
     <View>
-       <Button icon={props.ButtonIcon} buttonColor={props.ButtonColor} textColor={props.TextColor} mode="contained" onPress={() => console.log('Pressed')}>
+       <Button disabled={true} icon={props.ButtonIcon} buttonColor={props.ButtonColor} textColor={props.TextColor} mode="contained" onPress={() => console.log('Pressed')}>
         {props.ButtonText}
   </Button>
     </View>
