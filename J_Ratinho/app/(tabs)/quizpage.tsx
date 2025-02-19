@@ -12,10 +12,11 @@ import QuestionOption from '@/components/exercises/QuestionOption';
 import ProgressButton from '@/components/exercises/ProgressButton';
 import ExitDialog from '@/components/exercises/ExitDialog';
 import PlayableInstrument from '@/components/instruments/PlayableInstrument';
+import QuizImage from '@/components/exercises/QuizImage';
 
 export default function App() {
     return (
-    <View style={[styles.container, {backgroundColor: Colors.light.brown}]}>
+    <View style={styles.container}>
             <View style={styles.topButtonContainer}>
                 <ExitDialog 
                 ConfirmOption='Continuar' 
@@ -29,18 +30,36 @@ export default function App() {
 
             <View style={styles.centralContentContainer}>
                 <View style={styles.exerciseInfosContainer}>
-                    <Text variant='titleLarge' style={{color:'white'}}>
-                       Eperimente!
+                    <Text variant='titleLarge' style={{color: Colors.light.brown}}>
+                        Você sabe sobre a cidade?
                     </Text>
-                    <Text variant='bodyMedium' style={{marginTop: 10, color: 'white'}}> 
-                        Toque no instrumento!
+                    <Text variant='bodyMedium' style={{marginTop: 10}}> 
+                        Descobrindo curiosidades sobre Canindé
                     </Text>
                 </View>
 
-                <View>
-                    <PlayableInstrument InstrumentSize={400} InstrumentVariant='saxofone' InstrumentRotation='0deg' onPress={() => alert('Fon fon!')}/>   
+                <View style={styles.exerciseInfosContainer}>
+                    <QuizImage ImageSource='https://www.ceara.gov.br/wp-content/uploads/2022/07/20220701084811__MG_6302-scaled.jpeg'/>
+                    <Text variant='titleLarge' style={{color: Colors.light.brown}}>
+                        A estátua de São Francisco
+                    </Text>
+                    <Text variant='bodyMedium' style={{marginTop: 10, textAlign: 'center'}}> 
+                        Em que ano foi inaugurada o Monumento de São Franscico na cidade de Canindé?
+                    </Text>
                 </View>
 
+                <View style={styles.optionsContainer}>
+                       <QuestionOption OptionText='2000' OptionState=""/>
+                       <QuestionOption OptionText='2001' OptionState=""/>
+                       <QuestionOption OptionText='2002' OptionState=""/>
+                       <QuestionOption OptionText='2003' OptionState="wrong"/>
+                       <QuestionOption OptionText='2005' OptionState="right"/>
+                       <QuestionOption OptionText='2006' OptionState=""/>
+                </View>
+            </View>
+
+            <View style={styles.bottomButtonContainer}>
+                <ProgressButton CorrectAnswer={true}></ProgressButton>
             </View>
     </View>
     );
@@ -75,8 +94,10 @@ export default function App() {
         },
         optionsContainer: {
             flexDirection: 'row',
-            justifyContent: 'space-around',
+            flexWrap: 'wrap',
+            justifyContent: 'center',
             alignItems: 'center',
+            gap: 8
             // backgroundColor: 'blue'
         },
         bottomButtonContainer: {

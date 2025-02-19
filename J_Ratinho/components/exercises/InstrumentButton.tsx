@@ -36,8 +36,8 @@ const styles = StyleSheet.create({
   instrumentButton: {
     alignItems: 'center',
     justifyContent: 'center',
-    height: 80,
-    width: 80,
+    height: 60,
+    width: 50,
   },
 
 })

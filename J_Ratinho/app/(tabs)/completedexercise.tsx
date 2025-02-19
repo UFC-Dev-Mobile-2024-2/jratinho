@@ -12,10 +12,11 @@ import QuestionOption from '@/components/exercises/QuestionOption';
 import ProgressButton from '@/components/exercises/ProgressButton';
 import ExitDialog from '@/components/exercises/ExitDialog';
 import PlayableInstrument from '@/components/instruments/PlayableInstrument';
+import QuizImage from '@/components/exercises/QuizImage';
 
 export default function App() {
     return (
-    <View style={[styles.container, {backgroundColor: Colors.light.brown}]}>
+    <View style={[styles.container, {backgroundColor: Colors.dark.green}]}>
             <View style={styles.topButtonContainer}>
                 <ExitDialog 
                 ConfirmOption='Continuar' 
@@ -29,18 +30,17 @@ export default function App() {
 
             <View style={styles.centralContentContainer}>
                 <View style={styles.exerciseInfosContainer}>
-                    <Text variant='titleLarge' style={{color:'white'}}>
-                       Eperimente!
+                    <Text variant='titleLarge' style={{color: 'white'}}>
+                        Parabéns!
                     </Text>
                     <Text variant='bodyMedium' style={{marginTop: 10, color: 'white'}}> 
-                        Toque no instrumento!
+                    Seu esforço vale a pena, continue sempre aprendendo!
                     </Text>
                 </View>
+            </View>
 
-                <View>
-                    <PlayableInstrument InstrumentSize={400} InstrumentVariant='saxofone' InstrumentRotation='0deg' onPress={() => alert('Fon fon!')}/>   
-                </View>
-
+            <View style={styles.bottomButtonContainer}>
+                <Button buttonColor='white' textColor={Colors.dark.green}>Prosseguir</Button>
             </View>
     </View>
     );
@@ -62,9 +62,8 @@ export default function App() {
         },
         centralContentContainer: {
             flex: 5,
-            // backgroundColor: 'green',
             flexDirection: 'column',
-            justifyContent: 'space-between',
+            justifyContent: 'center',
             alignItems: 'center',
         },
         exerciseInfosContainer: {
@@ -72,12 +71,6 @@ export default function App() {
             justifyContent: 'center',
             alignItems: 'center',
             // backgroundColor: 'purple'
-        },
-        optionsContainer: {
-            flexDirection: 'row',
-            justifyContent: 'space-around',
-            alignItems: 'center',
-            // backgroundColor: 'blue'
         },
         bottomButtonContainer: {
             flex: 2,

@@ -21,7 +21,7 @@ const ExerciceCard = (props: ExerciseCardProps) => (
   <TouchableOpacity>
     <Card style={[styles.cardMain, {backgroundColor: props.MainColor}]}>
     <View style={[styles.customCardCover, {backgroundColor: props.CoverColor}]}>
-      <Instrument InstrumentVariant='saxofone' InstrumentSize={120} InstrumentRotation='-30deg'></Instrument>
+      <Instrument InstrumentVariant={props.InstrumentVariant} InstrumentSize={props.InstrumentSize} InstrumentRotation={props.InstrumentRotation}></Instrument>
     </View>
     <Card.Content style={{ padding: 10 }}>
       <Text style={[styles.cardTitle, {color: props.TextColor}]} variant="titleLarge">Card title</Text>
@@ -41,7 +41,9 @@ const styles = StyleSheet.create({
     width: '100%',
     backgroundColor: 'red',
     alignItems: 'center',
+    justifyContent: 'center',
     padding: 10,
+    overflow: 'hidden',
   },
   cardTitle: {
     fontSize: 20,

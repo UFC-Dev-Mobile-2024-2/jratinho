@@ -8,13 +8,14 @@ import {Colors} from '@/constants/Colors';
 
 type OptionProps = {
     OptionState: string;
+    OptionText: string;
   }
 
 const QuestionOption = (props: OptionProps) => (
     <View>
-        {props.OptionState === '' && <Button buttonColor={Colors.light.cian} mode='contained'>Alternativaaah</Button>}
-        {props.OptionState === 'right' && <Button buttonColor={Colors.dark.green} mode='contained' onPress={() => alert('Button pressed!')}>Alternativaaah</Button>}
-        {props.OptionState === 'wrong' && <Button buttonColor={Colors.dark.red} mode='contained' onPress={() => alert('Button pressed!')}>Alternativaaah</Button>}
+        {props.OptionState === '' && <Button buttonColor={Colors.light.cian} mode='contained'>{props.OptionText}</Button>}
+        {props.OptionState === 'right' && <Button buttonColor={Colors.dark.green} mode='contained' onPress={() => alert('Button pressed!')}>{props.OptionText}</Button>}
+        {props.OptionState === 'wrong' && <Button buttonColor={Colors.dark.red} mode='contained' onPress={() => alert('Button pressed!')}>{props.OptionText}</Button>}
     </View>
 );
 

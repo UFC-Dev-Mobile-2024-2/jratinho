@@ -15,7 +15,7 @@ import PlayableInstrument from '@/components/instruments/PlayableInstrument';
 
 export default function App() {
     return (
-    <View style={[styles.container, {backgroundColor: Colors.light.brown}]}>
+    <View style={styles.container}>
             <View style={styles.topButtonContainer}>
                 <ExitDialog 
                 ConfirmOption='Continuar' 
@@ -29,18 +29,28 @@ export default function App() {
 
             <View style={styles.centralContentContainer}>
                 <View style={styles.exerciseInfosContainer}>
-                    <Text variant='titleLarge' style={{color:'white'}}>
-                       Eperimente!
+                    <Text variant='titleLarge' style={{color: Colors.light.brown}}>
+                        Qual instrumento tem esse som?
                     </Text>
-                    <Text variant='bodyMedium' style={{marginTop: 10, color: 'white'}}> 
-                        Toque no instrumento!
+                    <Text variant='bodyMedium' style={{marginTop: 10}}> 
+                        Escute o som e escolha o instrumento correspondente
                     </Text>
                 </View>
 
                 <View>
-                    <PlayableInstrument InstrumentSize={400} InstrumentVariant='saxofone' InstrumentRotation='0deg' onPress={() => alert('Fon fon!')}/>   
+                    <FAB style={{backgroundColor: Colors.light.cian}} color={Colors.dark.cian} icon="music-note-eighth" size='large' onPress={() => console.log('Playing sound')} />
                 </View>
 
+                <View style={styles.optionsContainer}>
+                    <InstrumentButton InstrumentSize={120} InstrumentVariant='saxofone' InstrumentRotation='-30deg' OptionState="" onPress={() => alert('Errou!')}/>
+                    <InstrumentButton InstrumentSize={120} InstrumentVariant='tuba' InstrumentRotation='-30deg' OptionState="right" onPress={() => alert('Acertou!')}/>
+                    <InstrumentButton InstrumentSize={120} InstrumentVariant='flauta-transversal' InstrumentRotation='-30deg' OptionState="" onPress={() => alert('Errou!')}/>
+                    <InstrumentButton InstrumentSize={120} InstrumentVariant='clarinete' InstrumentRotation='-30deg' OptionState="" onPress={() => alert('Errou!')}/>
+                </View>
+            </View>
+
+            <View style={styles.bottomButtonContainer}>
+                <ProgressButton CorrectAnswer={true}></ProgressButton>
             </View>
     </View>
     );
