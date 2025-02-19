@@ -8,7 +8,7 @@ import ProfileImage from '@/components/profile/ProfileImage';
 
 export default function App() {
 
-    const [selectedImage, setSelectedImage] = useState(null);
+    const [selectedImage, setSelectedImage] = useState<number | null>(null);
 
     // Mock de imagens (substituir pelos caminhos corretos)
     const images = [
