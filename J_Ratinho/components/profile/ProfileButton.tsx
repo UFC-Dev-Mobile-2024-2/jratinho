@@ -2,7 +2,6 @@ import React from 'react';
 import {StyleSheet, View, Pressable} from "react-native";
 import { Button } from "react-native-paper";
 import { useFonts } from 'expo-font';
-import {Colors} from '@/constants/Colors';
 
 type ProfileButtonProps = {
   onPress?: () => void;

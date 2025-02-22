@@ -4,7 +4,7 @@ import { FAB, Button, Dialog, Portal, PaperProvider, Text } from 'react-native-p
 
 import { fonts } from '@/constants/Fonts';
 import Instrument from '@/components/instruments/Instrument';
-import {Colors} from '@/constants/Colors';
+import { Colors } from '@/constants/colors';
 
 type ExitDialogProps = {
   onDismiss?: () => void;

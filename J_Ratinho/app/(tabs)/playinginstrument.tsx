@@ -3,7 +3,6 @@ import {StyleSheet, View, Platform} from "react-native";
 import {Link} from "expo-router";
 import {Button, FAB, Text} from "react-native-paper";
 
-import {Colors} from '@/constants/Colors';
 
 import ExerciceCard from '@/components/exercises/ExerciseCard'; 
 import Instrument from '@/components/instruments/Instrument';
@@ -12,6 +11,7 @@ import QuestionOption from '@/components/exercises/QuestionOption';
 import ProgressButton from '@/components/exercises/ProgressButton';
 import ExitDialog from '@/components/exercises/ExitDialog';
 import PlayableInstrument from '@/components/instruments/PlayableInstrument';
+import { Colors } from '@/constants/colors';
 
 export default function App() {
     return (
