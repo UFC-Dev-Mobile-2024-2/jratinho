@@ -76,6 +76,7 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
     color: "white",
+    fontSize: 12,
   },
 });
 
