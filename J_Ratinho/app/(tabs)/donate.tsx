@@ -4,7 +4,6 @@ import { StyleSheet, View, Text, Button } from "react-native";
 export default function Donate() {
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>Doe!</Text>
 
       <View style={styles.section}>
         <Text style={styles.sectionTitle}>Quer ser um patrocinador?</Text>
