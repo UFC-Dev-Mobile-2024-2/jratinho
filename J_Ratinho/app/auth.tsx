@@ -3,7 +3,6 @@ import {StyleSheet, View, Platform, Image} from "react-native";
 import {Text, Button} from "react-native-paper";
 import {Link} from "expo-router";
 
-import {Colors} from "@/constants/Colors";
 import {styles} from "@/constants/styles";
 
 export default function Auth() {

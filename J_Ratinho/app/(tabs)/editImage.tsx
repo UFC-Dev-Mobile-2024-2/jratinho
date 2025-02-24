@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import { StyleSheet, View, Text, FlatList} from "react-native";
 
-import { Colors } from '@/constants/Colors';
 import ProfileButton from '@/components/profile/ProfileButton';
 import ProfileImage from '@/components/profile/ProfileImage';
+import { Colors } from '@/constants/colors';
 
 
 export default function App() {

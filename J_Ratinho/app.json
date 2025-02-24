@@ -34,6 +34,9 @@
         }
       ]
     ],
+    "fonts": [
+      "./assets/fonts/Capriola-Regular.ttf"
+    ],
     "experiments": {
       "typedRoutes": true
     }
