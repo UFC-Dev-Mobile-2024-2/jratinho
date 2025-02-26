@@ -1,5 +1,6 @@
-import {StyleSheet, View, Text} from "react-native";
-
+import {StyleSheet, View, Text, Button} from "react-native";
+import React
+ from "react";
 export default function Donate() {
   return (
     <View style={styles.container}>
