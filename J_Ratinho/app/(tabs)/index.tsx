@@ -11,7 +11,7 @@ export default function Index() {
     return (
         <View style={local.container}>
             <View style={local.header}>
-                <Image style={styles.marca} source={require("@/assets/images/marca.svg")} resizeMode="contain"/>
+                <Image style={styles.marca} source={require("@/assets/images/marca.png")} resizeMode="contain"/>
                 <Link style={local.profile} href="/profile">
                     <Avatar.Image  size={40} source={require("@/assets/images/rato.png")}/>
                 </Link>
