@@ -11,7 +11,7 @@ import QuestionOption from '@/components/exercises/QuestionOption';
 import ProgressButton from '@/components/exercises/ProgressButton';
 import ExitDialog from '@/components/exercises/ExitDialog';
 import PlayableInstrument from '@/components/instruments/PlayableInstrument';
-import { Colors } from '@/constants/colors';
+import { Colors } from '@/constants/Colors';
 
 export default function App() {
     return (

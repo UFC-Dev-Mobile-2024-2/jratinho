@@ -7,7 +7,7 @@ import {
   PaperProvider,
   Appbar,
 } from "react-native-paper";
-import { Colors } from "@/constants/colors";
+import { Colors } from "@/constants/Colors";
 
 const dark = { ...MD3DarkTheme, colors: Colors.dark };
 const light = { ...MD3LightTheme, colors: Colors.light };

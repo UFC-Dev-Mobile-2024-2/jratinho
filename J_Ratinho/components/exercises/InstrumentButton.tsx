@@ -4,7 +4,7 @@ import { Button } from "react-native-paper";
 import { useFonts } from 'expo-font';
 import { fonts } from '@/constants/Fonts';
 import Instrument from '@/components/instruments/Instrument';
-import { Colors } from '@/constants/colors';
+import { Colors } from '@/constants/Colors';
 
 type InstrumentButtonProps = {
   onPress?: () => void;

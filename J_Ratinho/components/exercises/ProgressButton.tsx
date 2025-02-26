@@ -3,7 +3,7 @@ import {StyleSheet, View} from "react-native";
 import { Button, Text } from "react-native-paper";
 import { useFonts } from 'expo-font';
 import { fonts } from '@/constants/Fonts';
-import { Colors } from '@/constants/colors';
+import { Colors } from '@/constants/Colors';
 
 type ProgressButtonProps = {
   CorrectAnswer: boolean;

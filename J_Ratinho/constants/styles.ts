@@ -1,5 +1,5 @@
 import {StyleSheet} from "react-native";
-import {colors} from "@/constants/colors";
+import {Colors} from "@/constants/Colors";
 
 export const styles = StyleSheet.create({
     h1: {

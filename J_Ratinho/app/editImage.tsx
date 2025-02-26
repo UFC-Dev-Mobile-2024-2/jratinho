@@ -3,7 +3,7 @@ import { StyleSheet, View, Text, FlatList} from "react-native";
 
 import ProfileButton from '@/components/profile/ProfileButton';
 import ProfileImage from '@/components/profile/ProfileImage';
-import { Colors } from '@/constants/colors';
+import { Colors } from '@/constants/Colors';
 
 
 export default function App() {

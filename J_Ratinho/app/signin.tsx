@@ -4,7 +4,7 @@ import { Text, TextInput, Button } from "react-native-paper";
 import { Link } from "expo-router";
 
 import { styles } from "@/constants/styles";
-import { Colors } from "@/constants/colors";
+import { Colors } from "@/constants/Colors";
 
 export default function Login() {
   const [text, onChangeText] = React.useState("");
