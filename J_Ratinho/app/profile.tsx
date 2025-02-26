@@ -2,7 +2,7 @@ import React from 'react';
 import { StyleSheet, View } from "react-native";
 import { TextInput } from "react-native-paper";
 
-import { Colors } from '@/constants/Colors';
+import { Colors } from '@/constants/colors';
 import ProfileButton from '@/components/profile/ProfileButton';
 import ProfileImage from '@/components/profile/ProfileImage';
 
