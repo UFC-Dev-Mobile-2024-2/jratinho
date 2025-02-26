@@ -10,6 +10,7 @@ Nesta aplicação, os usuários podem realizar exercícios musicais introdutóri
 - Pedro Henrique Oliveira (Projeto Integrado 4)
 - Sabrina dos Santos Dias (Projeto Integrado 4 e Projeto de Interfaces para Dispositivos Móveis)
 - Letícia Maciel Silva (Projeto Integrado 4 e Projeto de Interfaces para Dispositivos Móveis)
+- Ana Julia Araujo da Silva (Projeto de Interfaces para Dispositivos Móveis)
 
 ## Links importantes
 [Figma](https://www.figma.com/design/BRgTJDPZXjfLyumjvQyMKV/MOBILE---J.-RATINHO?node-id=0-1&t=79v2J9IvbM1ndKVd-1)
