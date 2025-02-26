@@ -3,7 +3,7 @@ import {StyleSheet, View, Image} from "react-native";
 import {Text, Button, Card, Avatar} from "react-native-paper";
 import {Link} from "expo-router";
 import {styles} from "@/constants/styles";
-import {Colors} from "@/constants/colors";
+import {Colors} from "@/constants/Colors";
 
 import ExerciceCard from '@/components/exercises/ExerciseCard';
 
