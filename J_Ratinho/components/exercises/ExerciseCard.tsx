@@ -5,7 +5,6 @@ import { useFonts } from 'expo-font';
 
 import { fonts } from '@/constants/Fonts';
 import Instrument from '@/components/instruments/Instrument';
-import {Colors} from '@/constants/Colors';
 
 type ExerciseCardProps = {
   // onPress?: () => void;

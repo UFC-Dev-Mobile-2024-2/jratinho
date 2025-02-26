@@ -3,8 +3,8 @@ import {StyleSheet, View, Image} from "react-native";
 import {Text, TextInput, Button} from "react-native-paper";
 import {Link} from "expo-router";
 
-import {Colors} from "@/constants/Colors";
 import {styles} from "@/constants/styles";
+import { Colors } from "@/constants/colors";
 
 export default function Login() {
     const [text, onChangeText] = React.useState("");
