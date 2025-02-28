@@ -1,7 +1,7 @@
 {
   "expo": {
     "name": "J_Ratinho",
-    "slug": "J_Ratinho",
+    "slug": "jratinho",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/images/icon.png",
@@ -39,6 +39,15 @@
     ],
     "experiments": {
       "typedRoutes": true
-    }
+    },
+    "extra": {
+      "router": {
+        "origin": false
+      },
+      "eas": {
+        "projectId": "ae07b457-48d2-4d1c-bb0b-0320222e4eda"
+      }
+    },
+    "owner": "andissu"
   }
 }
