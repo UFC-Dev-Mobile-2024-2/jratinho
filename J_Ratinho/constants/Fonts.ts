@@ -1,5 +1,5 @@
 import { useFonts } from 'expo-font';
-import AppLoading from 'expo-app-loading';
+//import { SplashScreen } from 'expo-splash-screen';
 
 import {   
     DMSans_400Regular,
