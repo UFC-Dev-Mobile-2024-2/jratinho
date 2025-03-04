@@ -19,35 +19,6 @@ Nesta aplicação, os usuários podem realizar exercícios musicais introdutóri
 ## O que vai ser a aplicação
 - uma plataforma de aprendizado de música e aspectos culturais.
 
-## Como acessar?
-No terminal, siga os seguintes passos:
-- backend
-```
-a preencher
-```
-- frontend
-```
-a preencher
-```
-
-- dados dos usuários fictícios
-```
-a preencehr
-```
-
-## Papeis ou tipos de usuário da aplicação
-
-Administrador
-Usuário
-
-## Entidades ou tabelas do sistema
-- Admin
-- User
-- Readings
-- Songs
-- Instruments
-- Exercises
-
 ## Principais funcionalidades da aplicação
 - Tocar notas básicas de instrumento
 - Leitura
@@ -55,26 +26,5 @@ Usuário
 - Envio de mensagens da fundação
 
 ## Tecnologias e frameworks utilizados
-
 React Native
-
-## Operações implementadas para cada entidade da aplicação
-
-
-| Entidade | Criação (C) | Leitura (R) | Atualização (U) | Remoção (D) |
-| ------------- | ------------- | ------------- | ------------- | ------------- |
-| Admin | X  | X | X | X |
-| User | X  | X | X | X |
-| Readings | X  | X | X | X |
-| Songs | X  | X | X | X |
-| Instruments | X  | X | X | X |
-| Exercises | X  | X | X | X |
-
-
-
-## Rotas da API REST utilizadas
-|Método HTTP | URL |
-| ------------- | ------------- |
-| POST  | /api/login |
-...
-
+React Native Paper
