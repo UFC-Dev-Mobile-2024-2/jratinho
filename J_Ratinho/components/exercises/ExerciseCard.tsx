@@ -34,6 +34,7 @@ const styles = StyleSheet.create({
   cardMain: {
     borderRadius: 10,
     overflow: 'hidden',
+    marginTop: 15,
   },
   customCardCover: {
     height: 150,

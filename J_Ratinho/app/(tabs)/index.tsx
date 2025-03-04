@@ -36,20 +36,24 @@ const local = StyleSheet.create({
         flex: 1,
         paddingLeft: 16,
         paddingRight: 16,
-        alignItems: "center",
+        
     },
     header: {
-        flex: 1,
+        paddingTop: 32,
         flexDirection: "row",
         alignItems: "center",
         position: "relative",
+        marginBottom: -18,
     },
     card: {
-        marginBottom: 8,
-        width: "100%"
+        marginTop: 16,
+        marginBottom: 16,
+        width: "100%",
+        alignItems: "center",
     },
     profile: {
         position: "absolute",
-        right: -128
+        marginTop: 9,
+        right: 0,
     }
 });
