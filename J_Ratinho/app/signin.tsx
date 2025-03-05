@@ -14,28 +14,22 @@ export default function SigninScreen() {
 	const [email, setEmail] = useState('');
 	const [password, setPassword] = useState('');
 
-	const API_TOKEN = '1e44abb261b37f1b6ee43d8d8a8bd79b71d95b3aacda25ba33f14192633fab475e004c2ee5ec035f3a66f421526194870cdc168b9f447f603a8c8731b63246d4bbb7f8a5e69bbe54b76a1192a18d474ea888029ee989bb5c99431a700538bef86af7b6dc2206ddd40b996c74bf4e8ea43dc3656ec9d275dfb8f189f89e98de63'
+	const API_URL = 'https://jratinho.onrender.com/api/auth/local/register';
 
 	const handleRegister = async () => {
 		try {
-			const response = await axios.post('https://jratinho.onrender.com/api/auth/local/register', {
-				username: 'newuser',
-				email: 'user@example.com',
-				password: 'password123',
-			},
-				{
-					headers: {
-						'Content-Type': 'application/json',
-						'Authorization': `Bearer ${API_TOKEN}`,
-					},
-				}
-			);
-			console.log(response.data);
+			const response = await axios.post(API_URL, {
+				username,
+				email,
+				password,
+			});
+
+			console.log('Registro bem-sucedido:', response.data);
 			router.push('/auth');
 		} catch (error) {
-			console.log(error);
+			console.error('Erro no registro:', error.response?.data || error.message);
 		}
-	}
+	};
 
 	return (
 		<KeyboardAvoidingView
