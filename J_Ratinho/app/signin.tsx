@@ -6,7 +6,7 @@ import { useRouter } from "expo-router";
 import { Colors } from "@/constants/Colors";
 import { styles } from '@/constants/styles';
 
-export default function Login() {
+export default function SigninScreen() {
 	const router = useRouter();
 	const [name, setName] = useState('');
 	const [email, setEmail] = useState('');
