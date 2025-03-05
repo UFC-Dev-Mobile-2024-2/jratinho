@@ -3,5 +3,9 @@ export default ({ env }) => ({
 		config: {
 			jwtSecret: env('JWT_SECRET'),
 		},
+		session: {
+			enabled: true,
+			maxAge: 86400000
+		}
 	},
 });
