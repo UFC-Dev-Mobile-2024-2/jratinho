@@ -52,7 +52,7 @@ export default function AuthScreen() {
 			</View>
 
 			<View style={local.buttonContainer}>
-				<TouchableOpacity style={local.button} onPress={() => router.push("/home")}>
+				<TouchableOpacity style={local.button} onPress={() => router.push("/splash")}>
 					<Text style={local.buttonText}>Entrar</Text>
 				</TouchableOpacity>
 
