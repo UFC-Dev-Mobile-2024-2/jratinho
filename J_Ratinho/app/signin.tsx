@@ -58,7 +58,7 @@ export default function Login() {
 
 			<View style={{ width: "80%", alignItems: "flex-start" }}>
 				<TouchableOpacity onPress={() => router.push("/")}>
-					<Text style={{ color: "#11181C" }}>Sua senha deve conter pelo menos 8, incluindo letras e números.</Text>
+					<Text style={{ color: "#11181C" }}>Sua senha deve conter pelo menos 8 caracteres, incluindo letras e números.</Text>
 				</TouchableOpacity>
 			</View>
 
