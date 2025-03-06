@@ -17,8 +17,19 @@ type ExerciseCardProps = {
 }
 
 const ExerciceCard = (props: ExerciseCardProps) => (
-  <TouchableOpacity>
-    <Card style={[styles.cardMain, {backgroundColor: props.MainColor}]}>
+  // <TouchableOpacity>
+  //   <Card style={[styles.cardMain, {backgroundColor: props.MainColor}]}>
+  //   <View style={[styles.customCardCover, {backgroundColor: props.CoverColor}]}>
+  //     <Instrument InstrumentVariant={props.InstrumentVariant} InstrumentSize={props.InstrumentSize} InstrumentRotation={props.InstrumentRotation}></Instrument>
+  //   </View>
+  //   <Card.Content style={{ padding: 10 }}>
+  //     <Text style={[styles.cardTitle, {color: props.TextColor}]} variant="titleLarge">Card title</Text>
+  //     <Text style={{color: props.TextColor}} variant="bodyMedium">Card content</Text>
+  //   </Card.Content>
+  // </Card>
+  // </TouchableOpacity>
+  
+  <Card style={[styles.cardMain, {backgroundColor: props.MainColor}]}>
     <View style={[styles.customCardCover, {backgroundColor: props.CoverColor}]}>
       <Instrument InstrumentVariant={props.InstrumentVariant} InstrumentSize={props.InstrumentSize} InstrumentRotation={props.InstrumentRotation}></Instrument>
     </View>
@@ -27,7 +38,6 @@ const ExerciceCard = (props: ExerciseCardProps) => (
       <Text style={{color: props.TextColor}} variant="bodyMedium">Card content</Text>
     </Card.Content>
   </Card>
-  </TouchableOpacity>
 );
 
 const styles = StyleSheet.create({

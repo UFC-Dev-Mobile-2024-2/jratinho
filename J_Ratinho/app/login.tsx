@@ -12,7 +12,6 @@ export default function Login() {
 
     return (
         <View style={local.container}>
-            <Image style={styles.marca} source={require("@/assets/images/marca.svg")} resizeMode="contain"/>
             <Text style={local.h1} variant="headlineLarge">Entrar</Text>
             <View style={{width: "80%"}}>
                 <TextInput
