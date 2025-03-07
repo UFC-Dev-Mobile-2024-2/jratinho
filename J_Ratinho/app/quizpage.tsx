@@ -16,7 +16,7 @@ import { Colors } from "@/constants/Colors";
 
 const token = 'dd40d5c313a14a7c10586fef30dd3a33de92666981e04be9a17c7b4b34ef9b0e8cb913e30cad5a504b5df838cc340e7df04e447e24cf11bbd91809cfc3eeb6e580580b526e8bf2017caceb2d801a4313dfc260b78461714a1ff40609fab244b32f630d45bbed44affafdb41769e84079558cf700d83a84c320a91d63515fa6bc'
 export default function QuizPage() {
-    const [questions, setQuizs] = useState<Quiz[]>([]);
+    const [quizes, setQuizes] = useState<Quiz[]>([]);
     const [currentQuiz, setCurrentQuiz] = useState<Quiz | null>(null);
     const [loading, setLoading] = useState(true);
     const getRandomQuiz = (questions: Quiz[]) => {
@@ -24,25 +24,26 @@ export default function QuizPage() {
         const randomIndex = Math.floor(Math.random() * questions.length);
         return questions[randomIndex];
     };
-        useEffect(() => {
-            axios
-                .get('https://stable-paradise-c922bed35a.strapiapp.com/api/exercicios?populate=*', {
-                    headers: {
-                        Authorization: `Bearer ${token}`
-                    }
-                })
-                .then(response => {
-                    const loadedQuizs = response.data.data;
-                    setQuizs(loadedQuizs);
-                    setLoading(false);
-                    const randomQuiz = getRandomQuiz(loadedQuizs);
-                    setCurrentQuiz(randomQuiz);
-                })
-                .catch(error => {
-                    console.error(error);
-                    setLoading(false);
-                });
-        }, []);
+    useEffect(() => {
+      axios
+          .get('https://stable-paradise-c922bed35a.strapiapp.com/api/exercicios?populate=*', {
+              headers: {
+                  Authorization: `Bearer ${token}`
+              }
+          })
+          .then(response => {
+              const loadedQuiz = response.data.data;
+              const filteredQuiz = loadedQuiz.filter((exerciseData: any) => exerciseData.topic.split(':')[0] === 'quiz');
+              setQuizes(filteredQuiz);
+              setLoading(false);
+              const randomQuiz = getRandomQuiz(filteredQuiz);
+              setCurrentQuiz(randomQuiz);
+          })
+          .catch(error => {
+              console.error('Error fetching questions:', error.response ? error.response.data : error.message);
+              setLoading(false);
+          });
+  }, []);
     
     //exit dialog
     const [visible, setVisible] = useState(false);
@@ -76,13 +77,16 @@ export default function QuizPage() {
     const [correctAnswer, setCorrectAnswer] = useState<boolean | null>(null);
 
     const handleAnswer = (id: string) => {
-        if (selectedAnswer !== null) return; 
-        const selectedOption = currentQuiz?.option.find(option => option.id === id);
-        if (selectedOption) {
-            setSelectedAnswer(id);
-            setCorrectAnswer(selectedOption.correct ? true : false);
-        }
-    };
+
+      if (selectedAnswer !== null) return;
+  
+      const selectedOption = currentQuiz?.option.find(option => option.id === id);
+      if (selectedOption) {
+          setSelectedAnswer(id); 
+          setCorrectAnswer(selectedOption.correct ? true : false); 
+      }
+  };
+
     //loading or no questions
     if (loading) {
         return (
@@ -131,16 +135,16 @@ export default function QuizPage() {
             </Text>
           </View>
 
-            <View style={styles.optionsContainer}>
-                {currentQuiz?.option.map((option) => (
-                <QuizOption
-                    key={option.id}
-                    OptionText={option.text}
-                    OptionState={selectedAnswer === option.id ? (correctAnswer ? "right" : "wrong") : ""}
-                    onPress={() => handleAnswer(option.id)}
-                />
-                ))}
-            </View>
+          <View style={styles.optionsContainer}>
+          {currentQuiz?.option && currentQuiz.option.map((option) => (
+            <QuizOption
+              key={option.id}
+              OptionText={option.text}
+              OptionState={selectedAnswer === option.id ? (correctAnswer ? "right" : "wrong") : ""}
+              onPress={() => handleAnswer(option.id)} // Passando o id da opção
+            />
+          ))}
+      </View>
         </View>
 
         <View style={styles.bottomButtonContainer}>
