@@ -11,12 +11,27 @@ declare module '*.mp3' {
 }
 
 export interface Question {
+id: number;
+documentId: string;
+question: string;
+topic: string;
+option: { id: string; text: string; correct: boolean }[];
+createdAt: string;
+updatedAt: string;
+publishedAt: string;
+}
+
+export interface Quiz {
   id: number;
   documentId: string;
   question: string;
+  subtitle: string;
+  image: {
+    url: string;
+  };
   topic: string;
   option: { id: string; text: string; correct: boolean }[];
   createdAt: string;
   updatedAt: string;
   publishedAt: string;
-}
+  }
