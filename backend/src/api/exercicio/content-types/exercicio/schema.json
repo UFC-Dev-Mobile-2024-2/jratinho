@@ -1,0 +1,28 @@
+{
+  "kind": "collectionType",
+  "collectionName": "exercicios",
+  "info": {
+    "singularName": "exercicio",
+    "pluralName": "exercicios",
+    "displayName": "Exercício",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "attributes": {
+    "question": {
+      "type": "string",
+      "required": true
+    },
+    "topic": {
+      "type": "string"
+    },
+    "options": {
+      "displayName": "options",
+      "type": "component",
+      "repeatable": true,
+      "component": "option.options"
+    }
+  }
+}
