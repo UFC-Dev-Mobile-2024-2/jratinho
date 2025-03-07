@@ -17,14 +17,16 @@ export default function RootLayout() {
     <PaperProvider theme={light}>
       <Stack>
         <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
+        <Stack.Screen name="index" options={{ headerShown: false }} />
         <Stack.Screen name="auth" options={{ headerShown: false }} />
         <Stack.Screen name="login" options={{ headerShown: false }} />
         <Stack.Screen name="signin" options={{ headerShown: false }} />
+        <Stack.Screen name="splash" options={{ headerShown: false }} />
 
         <Stack.Screen name="profile" />
+ 
         <Stack.Screen name="exercisepage" options={{ headerShown: false }}/>
         <Stack.Screen name="playinginstrument" options={{ headerShown: false }}/>
-
         <Stack.Screen name="completedexercise" options={{ headerShown: false }}/>
 
         <Stack.Screen name="+not-found" />

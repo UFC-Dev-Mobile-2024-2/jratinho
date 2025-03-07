@@ -20,12 +20,12 @@ type SolidLogoProps = {
 
 const Logo = (props: LogoProps) => {
   return (
-    <View style={[styles.container, {width: 'auto', height: 'auto'}]}>
+    <View style={[styles.container, {width: '100%', height: '100%'}]}>
         {props.LogoVariant === 'solid' && (
-        <MarcaSolida width={props.LogoWidth} fill={props.LogoColor} height={'auto'} />
+        <MarcaSolida width={props.LogoWidth} fill={props.LogoColor} height={'100%'} />
         )}
         {props.LogoVariant === 'colored' && (
-        <MarcaColorida width={props.LogoWidth} height={'auto'} />
+        <MarcaColorida width={props.LogoWidth} height={'100%'} />
         )}
     </View>
   );
