@@ -1,0 +1,27 @@
+{
+  "name": "jratinho",
+  "version": "1.0.0",
+  "description": "Aplicativo de ensino musical para uma instituição cultural.\r Nesta aplicação, os usuários podem realizar exercícios musicais introdutórios à música e conhecer mais da história e cultura da cidade de Canindé - Ce.",
+  "main": "expo-router/entry",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/UFC-Dev-Mobile-2024-2/jratinho.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/UFC-Dev-Mobile-2024-2/jratinho/issues"
+  },
+  "homepage": "https://github.com/UFC-Dev-Mobile-2024-2/jratinho#readme",
+  "dependencies": {
+    "expo": "^52.0.37"
+  },
+  "devDependencies": {
+    "typescript": "^5.3.3",
+    "@types/react": "~18.3.12"
+  }
+}
