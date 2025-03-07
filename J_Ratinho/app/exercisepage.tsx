@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import {StyleSheet, View, Platform} from "react-native";
 import {useRouter} from "expo-router";
 import { FAB, Button, Dialog, Portal, PaperProvider, Text } from 'react-native-paper';
+import axios from 'axios';
 
 import InstrumentButton from '@/components/exercises/InstrumentButton';
 import ProgressButton from '@/components/exercises/ProgressButton';
@@ -14,6 +15,22 @@ const { question, options, topic} = exerciseData.questions[3].attributes;
 
 
 export default function Exercisepage() {
+    //load questions
+    const [questions, setQuestions] = useState([]);
+    const [loading, setLoading] = useState(true);
+        useEffect(() => {
+            axios
+                .get('https://stable-paradise-c922bed35a.strapiapp.com/api/exercicios?populate=*')
+                .then(response => {
+                    const loadedQuestions = response.data.data;
+                    setQuestions(loadedQuestions);
+                    setLoading(false);
+                })
+                .catch(error => {
+                    console.error(error);
+                    setLoading(false);
+                });
+        }, []);
     //exit dialog
     const [visible, setVisible] = useState(false);
     const router = useRouter();
@@ -53,7 +70,7 @@ export default function Exercisepage() {
         setIsPlaying(!isPlaying);
         isPlaying ? playInstrument(topic) : playInstrument(topic);
     }
-    //exercise
+    //exercise progress
     const [selectedAnswer, setSelectedAnswer] = useState<string | null>(null);
     const [correctAnswer, setCorrectAnswer] = useState<boolean | null>(null);
 
@@ -65,6 +82,24 @@ export default function Exercisepage() {
             setCorrectAnswer(selectedOption.correct ? true : false);
         }
     };
+    //loading or no questions
+    if (loading) {
+        return (
+            <View style={styles.container}>
+                <Text variant="titleLarge">Carregando...</Text>
+            </View>
+        );
+    }
+    if (questions.length === 0) {
+        return (
+            <View style={styles.container}>
+                <Text variant="titleLarge" style={styles.errorText}>
+                    Não foi possível carregar as perguntas.
+                </Text>
+            </View>
+        );
+    }
+    //
 
     
     return (       
@@ -180,6 +215,11 @@ export default function Exercisepage() {
             position: 'absolute',
             top: 10,
             right: 10,
-          }
+          },
+
+          errorText: {
+            color: 'red',
+            fontSize: 18,
+        },
 
       });
