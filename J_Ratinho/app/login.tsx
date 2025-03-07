@@ -1,16 +1,39 @@
 import React, { useState } from 'react';
-import { StyleSheet, View, TouchableOpacity, KeyboardAvoidingView, Platform, Image } from "react-native";
-import { Text, TextInput } from "react-native-paper";
-import { useRouter } from "expo-router";
+import {  StyleSheet, View, TouchableOpacity, KeyboardAvoidingView, Platform, Image, Alert  } from "react-native";
+import {  Text, TextInput  } from "react-native-paper";
+import {  useRouter , router } from "expo-router";
+import axios from "axios";  
 
+import { styles } from "@/constants/styles";
 import { Colors } from "@/constants/Colors";
-import { styles } from '@/constants/styles';
+
+const API_URL = "https://jratinho.onrender.com/api/auth/local";
 import Logo from '@/components/logos/Logos';
 
-export default function LoginScreen() {
-	const router = useRouter();
-	const [email, setEmail] = useState('');
-	const [password, setPassword] = useState('');
+export default function Login() {
+    const [email, setEmail] = React.useState("");
+    const [password, setPassword] = React.useState("");
+    const [loading, setLoading] = React.useState(false);
+    const [error, setError] = React.useState<string | null>(null);
+
+	const handleLogin = async () => {
+        setError(null);
+        setLoading(true);
+        try {
+            const response = await axios.post(API_URL, {
+                identifier: email,
+                password: password,
+            });
+
+            
+            localStorage.setItem("jwt", response.data.jwt);
+            localStorage.setItem("user", JSON.stringify(response.data.user));            
+            router.replace("/");
+        } catch (error) {   
+            setError("E-mail ou senha incorretos");
+            setLoading(false);
+        }
+    };
 
 	return (
 		<KeyboardAvoidingView
@@ -40,7 +63,10 @@ export default function LoginScreen() {
 					activeOutlineColor="#9DB1F3"
 					theme={{ colors: { primary: '#9DB1F3', onSurfaceVariant: '#9DB1F3' } }}
 					style={local.input}
-					onChangeText={setPassword}
+					onChangeText={(text)=> {
+						setPassword(text);
+						setError(null); // Limpa o erro ao digitar
+					}}
 					value={password}
 					secureTextEntry
 				/>
