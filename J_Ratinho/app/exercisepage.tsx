@@ -23,7 +23,7 @@ export default function Exercisepage() {
         setIsPlaying(false);
         setVisible(false);
         resetExercise();
-        router.push("/(tabs)");
+        router.push("/home");
     };
 
     const proceedPage = () => {
@@ -117,7 +117,7 @@ export default function Exercisepage() {
                         <Text>Ao sair do exercício, você perderá seu progresso!</Text>
                     </Dialog.Content>
                     <Dialog.Actions>
-                        <Button onPress={() => router.push("/(tabs)")}>Sair</Button>
+                        <Button onPress={() => router.push("/home")}>Sair</Button>
                         <Button onPress={() => setVisible(false)}>Permanecer</Button>
                     </Dialog.Actions>
                 </Dialog>
