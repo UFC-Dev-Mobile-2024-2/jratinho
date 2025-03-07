@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
-import {  StyleSheet, View, TouchableOpacity, KeyboardAvoidingView, Platform, Image, Alert  } from "react-native";
-import {  Text, TextInput  } from "react-native-paper";
-import {  useRouter , router } from "expo-router";
-import axios from "axios";  
+import { StyleSheet, View, TouchableOpacity, KeyboardAvoidingView, Platform, Image, Alert } from "react-native";
+import { Text, TextInput } from "react-native-paper";
+import { useRouter, router } from "expo-router";
+import axios from "axios";
 
 import { styles } from "@/constants/styles";
 import { Colors } from "@/constants/Colors";
@@ -11,29 +11,29 @@ const API_URL = "https://jratinho.onrender.com/api/auth/local";
 import Logo from '@/components/logos/Logos';
 
 export default function Login() {
-    const [email, setEmail] = React.useState("");
-    const [password, setPassword] = React.useState("");
-    const [loading, setLoading] = React.useState(false);
-    const [error, setError] = React.useState<string | null>(null);
+	const [email, setEmail] = React.useState("");
+	const [password, setPassword] = React.useState("");
+	const [loading, setLoading] = React.useState(false);
+	const [error, setError] = React.useState<string | null>(null);
 
 	const handleLogin = async () => {
-        setError(null);
-        setLoading(true);
-        try {
-            const response = await axios.post(API_URL, {
-                identifier: email,
-                password: password,
-            });
+		setError(null);
+		setLoading(true);
+		try {
+			const response = await axios.post(API_URL, {
+				identifier: email,
+				password: password,
+			});
 
-            
-            localStorage.setItem("jwt", response.data.jwt);
-            localStorage.setItem("user", JSON.stringify(response.data.user));            
-            router.replace("/");
-        } catch (error) {   
-            setError("E-mail ou senha incorretos");
-            setLoading(false);
-        }
-    };
+
+			localStorage.setItem("jwt", response.data.jwt);
+			localStorage.setItem("user", JSON.stringify(response.data.user));
+			router.replace("/home");
+		} catch (error) {
+			setError("E-mail ou senha incorretos");
+			setLoading(false);
+		}
+	};
 
 	return (
 		<KeyboardAvoidingView
@@ -63,13 +63,16 @@ export default function Login() {
 					activeOutlineColor="#9DB1F3"
 					theme={{ colors: { primary: '#9DB1F3', onSurfaceVariant: '#9DB1F3' } }}
 					style={local.input}
-					onChangeText={(text)=> {
+					onChangeText={(text) => {
 						setPassword(text);
 						setError(null); // Limpa o erro ao digitar
 					}}
 					value={password}
 					secureTextEntry
 				/>
+				{error && (
+					<Text style={{ color: 'red', marginTop: 10, textAlign: 'center' }}>{error}</Text>
+				)}
 			</View>
 
 			<View style={{ width: "80%", alignItems: "flex-end" }}>
@@ -79,7 +82,7 @@ export default function Login() {
 			</View>
 
 			<View style={local.buttonContainer}>
-				<TouchableOpacity style={local.button} onPress={() => router.push("/splash")}>
+				<TouchableOpacity style={local.button} onPress={handleLogin} disabled={loading} >
 					<Text style={local.buttonText}>Entrar</Text>
 				</TouchableOpacity>
 
