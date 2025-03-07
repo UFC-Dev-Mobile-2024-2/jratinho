@@ -29,7 +29,7 @@ export const exerciseData = {
         {
             "id": 3,
             "attributes": {
-                "question": "Que instrumento está sendo tocado?",
+                "question": "   ",
                 "topic": "clarinet",
                 "options": [
                     { "id": "0", "text": "tuba", "correct": false },
