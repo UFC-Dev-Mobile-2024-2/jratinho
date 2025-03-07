@@ -9,3 +9,27 @@ declare module '*.mp3' {
   const value: string;
   export default value;
 }
+
+export interface Question {
+id: number;
+documentId: string;
+question: string;
+topic: string;
+option: { id: string; text: string; correct: boolean }[];
+createdAt: string;
+updatedAt: string;
+publishedAt: string;
+}
+
+export interface Quiz {
+id: number;
+documentId: string;
+question: string;
+subtutle: string;
+image: string;
+topic: string;
+option: { id: string; text: string; correct: boolean }[];
+createdAt: string;
+updatedAt: string;
+publishedAt: string;
+}

@@ -2,11 +2,7 @@ import React from 'react';
 
 import { View, StyleSheet, ViewStyle, Pressable, Image } from 'react-native';
 import {TouchableRipple} from "react-native-paper";
-import Saxofone from '@/assets/images/instruments/saxofone.svg';
-import Trompete from '@/assets/images/instruments/trompete.svg';
-import Tuba from '@/assets/images/instruments/tuba.svg';
-import Clarinete from '@/assets/images/instruments/clarinete.svg';
-import FlautaTransversal from '@/assets/images/instruments/flauta-transversal.svg';
+
 
 type InstrumentProps = {
     onPress?: () => void;
