@@ -3,14 +3,7 @@ import { StyleSheet, View, Platform } from "react-native";
 import { Link } from "expo-router";
 import { Button, FAB, Text } from "react-native-paper";
 
-import ExerciceCard from "@/components/exercises/ExerciseCard";
-import Instrument from "@/components/instruments/Instrument";
-import InstrumentButton from "@/components/exercises/InstrumentButton";
-import QuestionOption from "@/components/exercises/QuestionOption";
-import ProgressButton from "@/components/exercises/ProgressButton";
 import ExitDialog from "@/components/exercises/ExitDialog";
-import PlayableInstrument from "@/components/instruments/PlayableInstrument";
-import QuizImage from "@/components/exercises/QuizImage";
 import { Colors } from "@/constants/Colors";
 
 export default function App() {
@@ -41,9 +34,12 @@ export default function App() {
       </View>
 
       <View style={styles.bottomButtonContainer}>
+        
         <Button buttonColor="white" textColor={Colors.dark.green}>
-          Prosseguir
+          <Text variant="bodyLarge" style={{color:Colors.dark.green, fontWeight: 'bold'}}>Próximo exercício</Text>
         </Button>
+
+        <Button textColor="white" mode="text"><Text variant="labelMedium">Parar por agora</Text></Button>
       </View>
     </View>
   );

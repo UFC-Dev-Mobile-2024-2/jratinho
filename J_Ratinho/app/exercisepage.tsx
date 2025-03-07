@@ -1,41 +1,83 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import {StyleSheet, View, Platform} from "react-native";
-import {Link} from "expo-router";
+import {useRouter} from "expo-router";
 import { FAB, Button, Dialog, Portal, PaperProvider, Text } from 'react-native-paper';
 
-
-import ExerciceCard from '@/components/exercises/ExerciseCard'; 
-import Instrument from '@/components/instruments/Instrument';
 import InstrumentButton from '@/components/exercises/InstrumentButton';
-import QuestionOption from '@/components/exercises/QuestionOption';
 import ProgressButton from '@/components/exercises/ProgressButton';
-import PlayableInstrument from '@/components/instruments/PlayableInstrument';
 import { Colors } from '@/constants/Colors';
 
-import { playInstrument } from '@/services/playInstrument';
-import saxophoneSound from "@/assets/sounds/saxophone.mp3";
-import tubaSound from "@/assets/sounds/tuba.mp3";
-import fluteSound from "@/assets/sounds/transversal-flute.mp3";
-import clarinetSound from "@/assets/sounds/clarinet.mp3";
-import trompetSound from "@/assets/sounds/trumpet.mp3";
+import { exerciseData } from "@/fakedb/exerciseData";
+import { playInstrument } from "@/services/playInstrument";
+
+const { question, options, topic} = exerciseData.questions[3].attributes;
+
 
 export default function Exercisepage() {
+    //exit dialog
     const [visible, setVisible] = useState(false);
+    const router = useRouter();
 
-    const showDialog = () => setVisible(true);
-    const hideDialog = () => setVisible(false);
+    const handleExit = () => {
+        console.log("exiting");
+        setIsPlaying(false);
+        setVisible(false);
+        resetExercise();
+        router.push("/(tabs)");
+    };
 
-    return (
+    const proceedPage = () => {
+        console.log("proceeding");
+        setIsPlaying(false);
+        setVisible(false);
+        resetExercise();
+        router.push("/completedexercise");
+    };
+
+    const resetExercise = () => {
+        setIsPlaying(false);
+        setSelectedAnswer(null);
+        setCorrectAnswer(null);
+    };
+
+    useEffect(() => {
+        return () => resetExercise();
+    }, [router]);
+
+
+    //sound player
+    const [isPlaying, setIsPlaying] = useState(false);
+ 
+
+    function setInstrument(){
+        setIsPlaying(!isPlaying);
+        isPlaying ? playInstrument(topic) : playInstrument(topic);
+    }
+    //exercise
+    const [selectedAnswer, setSelectedAnswer] = useState<string | null>(null);
+    const [correctAnswer, setCorrectAnswer] = useState<boolean | null>(null);
+
+    const handleAnswer = (id: string) => {
+        if (selectedAnswer !== null) return; 
+        const selectedOption = options.find(option => option.id === id);
+        if (selectedOption) {
+            setSelectedAnswer(id);
+            setCorrectAnswer(selectedOption.correct ? true : false);
+        }
+    };
+
+    
+    return (       
     <View style={styles.container}>
         <PaperProvider>
             <View style={styles.topButtonContainer}>
-                <FAB icon="close" size="small" style={styles.fab} onPress={showDialog}/>
+                <FAB icon="close" size="small" style={styles.fab} onPress={() => setVisible(!visible)}/>
             </View>
 
             <View style={styles.centralContentContainer}>
                 <View style={styles.exerciseInfosContainer}>
                     <Text variant='titleLarge' style={{color: Colors.light.brown}}>
-                        Qual instrumento tem esse som?
+                        {question}
                     </Text>
                     <Text variant='bodyMedium' style={{marginTop: 10, color: 'black'}}> 
                         Escute o som e escolha o instrumento correspondente.
@@ -43,33 +85,44 @@ export default function Exercisepage() {
                 </View>
 
                 <View>
-                    <FAB style={{backgroundColor: Colors.light.cian}} color={Colors.dark.cian} icon="music-note-eighth" size='large' onPress={() => playInstrument(saxophoneSound)}/>
+                    <FAB style={{backgroundColor: Colors.light.cian}} color={Colors.dark.cian} icon="music-note-eighth" size='large' onPress={() => setInstrument()}/>
                 </View>
 
                 <View style={styles.optionsContainer}>
-                    <InstrumentButton InstrumentSize={120} InstrumentVariant='saxofone' InstrumentRotation='-30deg' OptionState="" onPress={() => alert('Errou!')}/>
-                    <InstrumentButton InstrumentSize={120} InstrumentVariant='tuba' InstrumentRotation='-30deg' OptionState="right" onPress={() => alert('Acertou!')}/>
-                    <InstrumentButton InstrumentSize={120} InstrumentVariant='flauta-transversal' InstrumentRotation='-30deg' OptionState="" onPress={() => alert('Errou!')}/>
-                    <InstrumentButton InstrumentSize={120} InstrumentVariant='clarinete' InstrumentRotation='-30deg' OptionState="" onPress={() => alert('Errou!')}/>
+                    {options.map((option) => (
+                        <InstrumentButton
+                            key={option.id}
+                            InstrumentSize={120}
+                            InstrumentVariant={option.text.toLowerCase()}
+                            InstrumentRotation="-30deg"
+                            OptionState={
+                                selectedAnswer === option.id
+                                    ? option.correct ? "right" : "wrong"
+                                    : ""
+                            }
+                            onPress={selectedAnswer === null ? () => handleAnswer(option.id) : undefined} 
+                        />
+                    ))}
                 </View>
             </View>
 
             <View style={styles.bottomButtonContainer}>
-                <ProgressButton CorrectAnswer={true}></ProgressButton>
+                {correctAnswer !== null && <ProgressButton onPress={() => (correctAnswer ? proceedPage() : handleExit())} CorrectAnswer={correctAnswer} />}
             </View>
 
             <Portal>
-                <Dialog visible={visible} onDismiss={hideDialog} style={styles.dialog} >
-                    <Dialog.Title><Text style={{color:Colors.dark.green}}>Sair do exercício?</Text></Dialog.Title>
+                <Dialog visible={visible} onDismiss={() => setVisible(false)}>
+                    <Dialog.Title>Sair do exercício?</Dialog.Title>
                     <Dialog.Content>
-                        <Text variant="bodyMedium" style={styles.dialogText}>Ao sair do exercício, você perderá seu progresso!</Text>
+                        <Text>Ao sair do exercício, você perderá seu progresso!</Text>
                     </Dialog.Content>
                     <Dialog.Actions>
-                        <Button onPress={hideDialog} textColor='darkgray'>Sair</Button>
-                        <Button buttonColor={Colors.dark.green} onPress={hideDialog} textColor='white'>Permanecer</Button>
+                        <Button onPress={() => router.push("/(tabs)")}>Sair</Button>
+                        <Button onPress={() => setVisible(false)}>Permanecer</Button>
                     </Dialog.Actions>
                 </Dialog>
             </Portal>
+
 
         </PaperProvider>
     </View>
