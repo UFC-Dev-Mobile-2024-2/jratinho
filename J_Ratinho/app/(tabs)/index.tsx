@@ -17,12 +17,11 @@ export default function Index() {
             </View>
             <Text variant="headlineLarge">Bem vindo, aluno!</Text>
             <Text style={{marginBottom: 32}}variant="titleMedium">Vamos aprender e se divertir?</Text>
-            
-            <Link href='/playinginstrument'>
+
+            <Link href='/quizpage'>
                 <ExerciceCard InstrumentVariant='saxophone' InstrumentSize={200} InstrumentRotation='-30deg' MainColor={Colors.dark.orange} CoverColor={Colors.light.orange} TextColor='#ffffff'>
                 </ExerciceCard>
             </Link>
-
             <Link href='/exercisepage'>
                 <ExerciceCard InstrumentVariant='saxophone' InstrumentSize={200} InstrumentRotation='-30deg' MainColor={Colors.dark.orange} CoverColor={Colors.light.orange} TextColor='#ffffff'>
                 </ExerciceCard>

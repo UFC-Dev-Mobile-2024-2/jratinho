@@ -1,12 +1,27 @@
 import React from "react";
 import { StyleSheet, View, Platform } from "react-native";
-import { Link } from "expo-router";
+import {useRouter} from "expo-router";
 import { Button, FAB, Text } from "react-native-paper";
 
 import ExitDialog from "@/components/exercises/ExitDialog";
 import { Colors } from "@/constants/Colors";
 
-export default function App() {
+
+
+export default function CompletedExercise() {
+
+  const router = useRouter();
+
+  const handleExit = () => {
+    console.log("exiting");
+    router.push("/(tabs)");
+  };
+
+  const proceedPage = () => {
+    console.log("proceeding");
+    router.push("/exercisepage");
+  };
+
   return (
     <View style={[styles.container, { backgroundColor: Colors.dark.green }]}>
       <View style={styles.topButtonContainer}>
@@ -35,11 +50,9 @@ export default function App() {
 
       <View style={styles.bottomButtonContainer}>
         
-        <Button buttonColor="white" textColor={Colors.dark.green}>
-          <Text variant="bodyLarge" style={{color:Colors.dark.green, fontWeight: 'bold'}}>Próximo exercício</Text>
-        </Button>
+        <Button buttonColor="white" textColor={Colors.dark.green} labelStyle={{ fontSize: 16, fontWeight: "bold" }} onPress={() => {proceedPage()}}>Próximo exercício</Button>
 
-        <Button textColor="white" mode="text"><Text variant="labelMedium">Parar por agora</Text></Button>
+        <Button textColor="white" mode="text" onPress={() => {handleExit()}}>Parar por agora</Button>
       </View>
     </View>
   );

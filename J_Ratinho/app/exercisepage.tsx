@@ -181,4 +181,5 @@ export default function Exercisepage() {
             top: 10,
             right: 10,
           }
+
       });
