@@ -1,109 +1,175 @@
-import React, { useState, useEffect } from "react";
-import { View, StyleSheet } from "react-native";
-import { Button, Text, PaperProvider } from "react-native-paper";
-import { useRouter } from "expo-router";
+import React, { useState, useEffect } from 'react';
+import {StyleSheet, View, Platform} from "react-native";
+import {useRouter} from "expo-router";
+import { FAB, Button, Dialog, Portal, PaperProvider, Text } from 'react-native-paper';
+
+import InstrumentButton from '@/components/exercises/InstrumentButton';
+import ProgressButton from '@/components/exercises/ProgressButton';
+import { Colors } from '@/constants/Colors';
 
 import { exerciseData } from "@/fakedb/exerciseData";
+import { playInstrument } from "@/services/playInstrument";
 
-export default function QuizPage() {
+const { question, options, topic} = exerciseData.questions[1].attributes;
+
+
+export default function Exercisepage() {
+    //exit dialog
+    const [visible, setVisible] = useState(false);
     const router = useRouter();
-    
-    const [questionIndex, setQuestionIndex] = useState(0);
+
+    const handleExit = () => {
+        setIsPlaying(false);
+        setVisible(false);
+        resetExercise();
+        router.push("/(tabs)");
+    };
+
+    const resetExercise = () => {
+        setIsPlaying(false);
+        setSelectedAnswer(null);
+        setCorrectAnswer(null);
+    };
+
+    useEffect(() => {
+        return () => resetExercise();
+    }, [router]);
+
+
+    //sound player
+    const [isPlaying, setIsPlaying] = useState(false);
+ 
+
+    function setInstrument(){
+        setIsPlaying(!isPlaying);
+        isPlaying ? playInstrument(topic) : playInstrument(topic);
+    }
+    //exercise
     const [selectedAnswer, setSelectedAnswer] = useState<string | null>(null);
     const [correctAnswer, setCorrectAnswer] = useState<boolean | null>(null);
 
-    const currentQuestion = exerciseData.questions[questionIndex];
-
     const handleAnswer = (id: string) => {
-        if (selectedAnswer !== null) return;
-
-        const selectedOption = currentQuestion.attributes.options.find(option => option.id === id);
+        if (selectedAnswer !== null) return; 
+        const selectedOption = options.find(option => option.id === id);
         if (selectedOption) {
             setSelectedAnswer(id);
-            setCorrectAnswer(selectedOption.correct);
+            setCorrectAnswer(selectedOption.correct ? true : false);
         }
     };
 
-    const proceedPage = () => {
-        if (questionIndex < exerciseData.questions.length - 1) {
-            setQuestionIndex(questionIndex + 1);
-            setSelectedAnswer(null);
-            setCorrectAnswer(null);
-        } else {
-            router.push("/completedexercise");
-        }
-    };
-
-    return (
+    
+    return (       
+    <View style={styles.container}>
         <PaperProvider>
-            <View style={styles.container}>
-                <Text variant="titleLarge" style={styles.questionText}>
-                    {currentQuestion.attributes.question}
-                </Text>
-                
-                <View style={styles.optionsContainer}>
-                    {currentQuestion.attributes.options.map((option) => (
-                        <Button
-                            key={option.id}
-                            mode="contained"
-                            style={[
-                                styles.optionButton,
-                                selectedAnswer === option.id
-                                    ? option.correct
-                                        ? styles.correctAnswer
-                                        : styles.wrongAnswer
-                                    : null
-                            ]}
-                            onPress={() => handleAnswer(option.id)}
-                            disabled={selectedAnswer !== null}
-                        >
-                            {option.text}
-                        </Button>
-                    ))}
+            <View style={styles.topButtonContainer}>
+                <FAB icon="close" size="small" style={styles.fab} onPress={() => setVisible(!visible)}/>
+            </View>
+
+            <View style={styles.centralContentContainer}>
+                <View style={styles.exerciseInfosContainer}>
+                    <Text variant='titleLarge' style={{color: Colors.light.brown}}>
+                        {question}
+                    </Text>
+                    <Text variant='bodyMedium' style={{marginTop: 10, color: 'black'}}> 
+                        Escute o som e escolha o instrumento correspondente.
+                    </Text>
                 </View>
 
-                {correctAnswer !== null && (
-                    <Button mode="contained" onPress={proceedPage} style={styles.nextButton}>
-                        {questionIndex < exerciseData.questions.length - 1 ? "Próxima questão" : "Finalizar"}
-                    </Button>
-                )}
+                <View>
+                    <FAB style={{backgroundColor: Colors.light.cian}} color={Colors.dark.cian} icon="music-note-eighth" size='large' onPress={() => setInstrument()}/>
+                </View>
+
+                <View style={styles.optionsContainer}>
+                    {options.map((option) => (
+                        <InstrumentButton
+                            key={option.id}
+                            InstrumentSize={120}
+                            InstrumentVariant={option.text.toLowerCase()}
+                            InstrumentRotation="-30deg"
+                            OptionState={
+                                selectedAnswer === option.id
+                                    ? option.correct ? "right" : "wrong"
+                                    : ""
+                            }
+                            onPress={selectedAnswer === null ? () => handleAnswer(option.id) : undefined} // Disable after selection
+                        />
+                    ))}
+                </View>
             </View>
+
+            <View style={styles.bottomButtonContainer}>
+                {correctAnswer !== null && <ProgressButton onPress={() => handleExit} CorrectAnswer={correctAnswer} />}
+            </View>
+
+            <Portal>
+                <Dialog visible={visible} onDismiss={() => setVisible(false)}>
+                    <Dialog.Title>Sair do exercício?</Dialog.Title>
+                    <Dialog.Content>
+                        <Text>Ao sair do exercício, você perderá seu progresso!</Text>
+                    </Dialog.Content>
+                    <Dialog.Actions>
+                        <Button onPress={() => router.push("/(tabs)")}>Sair</Button>
+                        <Button onPress={() => setVisible(false)}>Permanecer</Button>
+                    </Dialog.Actions>
+                </Dialog>
+            </Portal>
+
+
         </PaperProvider>
+    </View>
     );
 }
 
-const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        justifyContent: "center",
-        alignItems: "center",
-        padding: 20,
-        backgroundColor: "#ecf0f1",
-    },
-    questionText: {
-        fontSize: 20,
-        fontWeight: "bold",
-        marginBottom: 20,
-        textAlign: "center",
-        color: "#333",
-    },
-    optionsContainer: {
-        width: "100%",
-        alignItems: "center",
-    },
-    optionButton: {
-        marginVertical: 5,
-        width: "80%",
-    },
-    correctAnswer: {
-        backgroundColor: "green",
-    },
-    wrongAnswer: {
-        backgroundColor: "red",
-    },
-    nextButton: {
-        marginTop: 20,
-        backgroundColor: "#007bff",
-    },
-});
+    const styles = StyleSheet.create({
+        container: {
+          flex: 1,
+          flexDirection: 'column',
+          justifyContent: 'center',
+          backgroundColor: '#ecf0f1',
+        },
+        topButtonContainer: {
+            flex: 1,
+            flexDirection: 'row',
+            alignItems: 'flex-start',
+            // backgroundColor: 'yellow',
+        },
+        centralContentContainer: {
+            flex: 5,
+            // backgroundColor: 'green',
+            flexDirection: 'column',
+            justifyContent: 'space-between',
+            alignItems: 'center',
+        },
+        exerciseInfosContainer: {
+            flexDirection: 'column',
+            justifyContent: 'center',
+            alignItems: 'center',
+            // backgroundColor: 'purple'
+        },
+        optionsContainer: {
+            flexDirection: 'row',
+            justifyContent: 'space-around',
+            alignItems: 'center',
+            // backgroundColor: 'blue'
+        },
+        bottomButtonContainer: {
+            flex: 2,
+            // backgroundColor: 'red',
+            flexDirection: 'column',
+            justifyContent: 'center',
+        },
 
+
+        dialog: {
+            backgroundColor: 'white'
+          },
+          dialogText:{
+            color: 'black',
+          },
+          fab:{
+            backgroundColor: Colors.dark.green,
+            position: 'absolute',
+            top: 10,
+            right: 10,
+          }
+      });
