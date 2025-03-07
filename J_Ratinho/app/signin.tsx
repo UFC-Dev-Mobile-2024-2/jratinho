@@ -7,7 +7,10 @@ import { Colors } from "@/constants/Colors";
 import { styles } from '@/constants/styles';
 
 import axios from 'axios';
+<<<<<<< HEAD
 import Logo from '@/components/logos/Logos';
+=======
+>>>>>>> 4e35aa09ca9fcf523535aecd33451eb6db88fc9b
 
 export default function SigninScreen() {
 	const router = useRouter();
@@ -140,4 +143,8 @@ const local = StyleSheet.create({
 		color: Colors.dark.text,
 		fontWeight: "bold",
 	}
+<<<<<<< HEAD
 });
+=======
+});
+>>>>>>> 4e35aa09ca9fcf523535aecd33451eb6db88fc9b

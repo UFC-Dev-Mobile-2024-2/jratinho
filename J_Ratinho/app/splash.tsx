@@ -29,4 +29,8 @@ export default function SplashScreen() {
 			<ActivityIndicator size="large" color="#ECEDEE" />
 		</View>
 	);
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> 4e35aa09ca9fcf523535aecd33451eb6db88fc9b
