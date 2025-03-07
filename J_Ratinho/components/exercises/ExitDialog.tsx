@@ -27,15 +27,11 @@ const ExitDialog = (props: ExitDialogProps) => {
     return (
         <PaperProvider>
         <View>
-          <FAB icon="close"
-        size="small"
-        style={styles.fab}
-        onPress={showDialog}
-        />
+          
 
           <Portal>
-            <Dialog visible={visible} onDismiss={hideDialog} style={styles.dialog}>
-              <Dialog.Title style={{color:props.AccentColor}}>{props.DialogTitle}</Dialog.Title>
+            <Dialog visible={visible} onDismiss={hideDialog} style={styles.dialog} >
+              <Dialog.Title><Text style={{color:props.AccentColor}}>{props.DialogTitle}</Text></Dialog.Title>
               <Dialog.Content>
                 <Text variant="bodyMedium" style={styles.dialogText}>{props.DialogText}</Text>
               </Dialog.Content>
@@ -55,7 +51,7 @@ const styles = StyleSheet.create({
     backgroundColor: 'white'
   },
   dialogText:{
-    color: 'darkgray',
+    color: 'black',
   },
   fab:{
     backgroundColor: Colors.dark.green,

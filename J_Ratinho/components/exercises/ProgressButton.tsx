@@ -7,12 +7,13 @@ import { Colors } from '@/constants/Colors';
 
 type ProgressButtonProps = {
   CorrectAnswer: boolean;
+  onPress: () => void;
 }
 
 const ProgressButton = (props: ProgressButtonProps) => (
     <View style={styles.container}>
         <Text style={{color: props.CorrectAnswer ? Colors.dark.green : Colors.dark.orange, marginBottom: 16}} >{props.CorrectAnswer ? 'Muito bem! Continue assim!' : 'Erros acontecem... sempre há uma segunda chance!'}</Text>
-        <Button buttonColor={props.CorrectAnswer? Colors.dark.green : Colors.dark.orange} textColor='white' mode='contained'>Prosseguir</Button>
+        <Button buttonColor={props.CorrectAnswer? Colors.dark.green : Colors.dark.orange} textColor='white' mode='contained' onPress={props.onPress}>Prosseguir</Button>
     </View>
 );
 

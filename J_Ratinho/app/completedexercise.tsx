@@ -1,19 +1,27 @@
 import React from "react";
 import { StyleSheet, View, Platform } from "react-native";
-import { Link } from "expo-router";
+import {useRouter} from "expo-router";
 import { Button, FAB, Text } from "react-native-paper";
 
-import ExerciceCard from "@/components/exercises/ExerciseCard";
-import Instrument from "@/components/instruments/Instrument";
-import InstrumentButton from "@/components/exercises/InstrumentButton";
-import QuestionOption from "@/components/exercises/QuestionOption";
-import ProgressButton from "@/components/exercises/ProgressButton";
 import ExitDialog from "@/components/exercises/ExitDialog";
-import PlayableInstrument from "@/components/instruments/PlayableInstrument";
-import QuizImage from "@/components/exercises/QuizImage";
 import { Colors } from "@/constants/Colors";
 
-export default function App() {
+
+
+export default function CompletedExercise() {
+
+  const router = useRouter();
+
+  const handleExit = () => {
+    console.log("exiting");
+    router.push("/(tabs)");
+  };
+
+  const proceedPage = () => {
+    console.log("proceeding");
+    router.push("/exercisepage");
+  };
+
   return (
     <View style={[styles.container, { backgroundColor: Colors.dark.green }]}>
       <View style={styles.topButtonContainer}>
@@ -41,9 +49,10 @@ export default function App() {
       </View>
 
       <View style={styles.bottomButtonContainer}>
-        <Button buttonColor="white" textColor={Colors.dark.green}>
-          Prosseguir
-        </Button>
+        
+        <Button buttonColor="white" textColor={Colors.dark.green} labelStyle={{ fontSize: 16, fontWeight: "bold" }} onPress={() => {proceedPage()}}>Próximo exercício</Button>
+
+        <Button textColor="white" mode="text" onPress={() => {handleExit()}}>Parar por agora</Button>
       </View>
     </View>
   );

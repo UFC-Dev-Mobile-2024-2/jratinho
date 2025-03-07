@@ -1,47 +1,70 @@
-import React from 'react';
-import {StyleSheet, View, Platform} from "react-native";
-import {Link} from "expo-router";
-import {Button, FAB, Text} from "react-native-paper";
+import React, {useState, useEffect} from 'react';
+import {StyleSheet, View, Platform, Pressable} from "react-native";
+import {Link, useRouter} from "expo-router";
+import { FAB, Button, Dialog, Portal, PaperProvider, Text } from 'react-native-paper';
 
-
-import ExerciceCard from '@/components/exercises/ExerciseCard'; 
-import Instrument from '@/components/instruments/Instrument';
-import InstrumentButton from '@/components/exercises/InstrumentButton';
-import QuestionOption from '@/components/exercises/QuestionOption';
-import ProgressButton from '@/components/exercises/ProgressButton';
-import ExitDialog from '@/components/exercises/ExitDialog';
 import PlayableInstrument from '@/components/instruments/PlayableInstrument';
 import { Colors } from '@/constants/Colors';
 
-export default function App() {
+import { playInstrument } from '@/services/playInstrument';
+
+export default function PlayingInstrument() {
+
+    let instrument = 'clarinet';
+
+    //sound player
+    const [sound, setSound] = useState<string | null>(null);
+    const [isPlaying, setIsPlaying] = useState(false);
+
+    useEffect(() => {
+        setSound(sound);
+    },[]);
+
+    function setInstrument(){
+        setIsPlaying(true);
+        playInstrument(instrument);
+    }
+    function stopInstrument(){
+        setIsPlaying(false);   
+        playInstrument();
+    }
+
+    //exit handler
+    const router = useRouter();
+    const handleExit = () => {
+            resetExercise();
+            router.push("/(tabs)");
+    };
+    const resetExercise = () => {
+        setIsPlaying(false);
+    };
+    
+    useEffect(() => {
+        return () => resetExercise(); // Reset state when leaving the page
+    }, [router]);
+
+
     return (
     <View style={[styles.container, {backgroundColor: Colors.light.brown}]}>
+        <PaperProvider>
             <View style={styles.topButtonContainer}>
-                <ExitDialog 
-                ConfirmOption='Continuar' 
-                DismissOption='Sair'
-                AccentColor={Colors.dark.green}
-                TextColor='#ffffff'
-                DialogTitle='Tem certeza?'
-                DialogText='Você deseja realmente sair?'
-                onDismiss={() => console.log('Dialog dismissed')}/> 
+                <FAB icon="close" size="small" style={styles.fab} onPress={handleExit}/>
             </View>
-
+            
             <View style={styles.centralContentContainer}>
                 <View style={styles.exerciseInfosContainer}>
                     <Text variant='titleLarge' style={{color:'white'}}>
-                       Eperimente!
+                       Experimente!
                     </Text>
-                    <Text variant='bodyMedium' style={{marginTop: 10, color: 'white'}}> 
-                        Toque no instrumento!
-                    </Text>
+                    {isPlaying ? null : <Text variant='bodyMedium' style={{marginTop: 10, color: 'white'}}>Toque no instrumento!</Text>}
                 </View>
 
                 <View>
-                    <PlayableInstrument InstrumentSize={400} InstrumentVariant='saxofone' InstrumentRotation='0deg' onPress={() => alert('Fon fon!')}/>   
+                    <PlayableInstrument InstrumentSize={ isPlaying ? 500 : 400} InstrumentVariant={instrument} InstrumentRotation='0deg' onPressIn={() => setInstrument()} onPressOut={() => stopInstrument()}/>
                 </View>
 
             </View>
+        </PaperProvider>
     </View>
   );
 }
@@ -52,7 +75,6 @@ export default function App() {
           flexDirection: 'column',
           justifyContent: 'center',
           backgroundColor: '#ecf0f1',
-          padding: 8,
         },
         topButtonContainer: {
             flex: 1,
@@ -85,4 +107,17 @@ export default function App() {
             flexDirection: 'column',
             justifyContent: 'center',
         },
+
+        dialog: {
+            backgroundColor: 'white'
+          },
+          dialogText:{
+            color: 'black',
+          },
+          fab:{
+            backgroundColor: Colors.dark.green,
+            position: 'absolute',
+            top: 10,
+            right: 10,
+          }
       });

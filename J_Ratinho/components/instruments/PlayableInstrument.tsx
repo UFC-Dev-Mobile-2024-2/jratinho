@@ -8,7 +8,8 @@ import Clarinete from '@/assets/images/instruments/clarinete.svg';
 import FlautaTransversal from '@/assets/images/instruments/flauta-transversal.svg';
 
 type InstrumentProps = {
-    onPress?: () => void;
+    onPressIn?: () => void;
+    onPressOut?: () => void;
     InstrumentVariant: string;
     InstrumentSize: number;
     InstrumentRotation: string
@@ -17,11 +18,11 @@ type InstrumentProps = {
 const Instrument = (props: InstrumentProps) => {
   return (
     <View style={[styles.container, {width: props.InstrumentSize, height: props.InstrumentSize, transform: [{rotate: props.InstrumentRotation}]}]}>
-      <Pressable onPress={props.onPress}>
+      <Pressable onPressIn={props.onPressIn} onPressOut={props.onPressOut}>
         {props.InstrumentVariant === 'saxofone' && <Saxofone height={props.InstrumentSize}  />}
         {props.InstrumentVariant === 'trompete' && <Trompete height={props.InstrumentSize} />}
         {props.InstrumentVariant === 'tuba' && <Tuba height={props.InstrumentSize} />}
-        {props.InstrumentVariant === 'clarinete' && <Clarinete height={props.InstrumentSize} />}
+        {props.InstrumentVariant === 'clarinet' && <Clarinete height={props.InstrumentSize} />}
         {props.InstrumentVariant === 'flauta-transversal' && <FlautaTransversal height={props.InstrumentSize} />}
       </Pressable>
     </View>

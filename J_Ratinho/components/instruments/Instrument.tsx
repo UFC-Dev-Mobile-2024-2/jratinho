@@ -16,11 +16,11 @@ type InstrumentProps = {
 const Instrument = (props: InstrumentProps) => {
   return (
     <View style={[styles.container, {width: 0, height: props.InstrumentSize, transform: [{rotate: props.InstrumentRotation}]}]}>
-      {props.InstrumentVariant === 'saxofone' && <Saxofone height={props.InstrumentSize}  />}
-      {props.InstrumentVariant === 'trompete' && <Trompete height={props.InstrumentSize} />}
+      {props.InstrumentVariant === 'saxophone' && <Saxofone height={props.InstrumentSize}  />}
+      {props.InstrumentVariant === 'trompet' && <Trompete height={props.InstrumentSize} />}
       {props.InstrumentVariant === 'tuba' && <Tuba height={props.InstrumentSize} />}
-      {props.InstrumentVariant === 'clarinete' && <Clarinete height={props.InstrumentSize} />}
-      {props.InstrumentVariant === 'flauta-transversal' && <FlautaTransversal height={props.InstrumentSize} />}
+      {props.InstrumentVariant === 'clarinet' && <Clarinete height={props.InstrumentSize} />}
+      {props.InstrumentVariant === 'transversal-flute' && <FlautaTransversal height={props.InstrumentSize} />}
     </View>
   );
 }
