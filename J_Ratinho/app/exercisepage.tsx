@@ -2,7 +2,9 @@ import React, { useState, useEffect } from 'react';
 import {StyleSheet, View, Platform} from "react-native";
 import {useRouter} from "expo-router";
 import { FAB, Button, Dialog, Portal, PaperProvider, Text } from 'react-native-paper';
+import axios from 'axios';
 
+import { Question } from '@/@types/declarations';
 import InstrumentButton from '@/components/exercises/InstrumentButton';
 import ProgressButton from '@/components/exercises/ProgressButton';
 import { Colors } from '@/constants/Colors';
@@ -10,10 +12,38 @@ import { Colors } from '@/constants/Colors';
 import { exerciseData } from "@/fakedb/exerciseData";
 import { playInstrument } from "@/services/playInstrument";
 
-const { question, options, topic} = exerciseData.questions[3].attributes;
-
+const token = 'c3f92ce5b43c5aa5489e86971ffb6be5c97cb32fa61e21fa42b93335f8132f0ccf3bc28aab9a67fd5bf11ccf4a139a7ed0b76c132b754857085572a1ed351154c6161c05e054e46dbeca80fc6eb7d33e33b8c82a4f24f7aa5c4967fe18c1ac3bd06d162ddf3b171c526f5d4aca32931ae0fdc3df8a169fb4647319ffd8294913'
 
 export default function Exercisepage() {
+
+    const [questions, setQuestions] = useState<Question[]>([]);
+    const [currentQuestion, setCurrentQuestion] = useState<Question | null>(null);
+    const [loading, setLoading] = useState(true);
+    const getRandomQuestion = (questions: Question[]) => {
+        if (questions.length === 0) return null;
+        const randomIndex = Math.floor(Math.random() * questions.length);
+        return questions[randomIndex];
+    };
+        useEffect(() => {
+            axios
+                .get('https://stable-paradise-c922bed35a.strapiapp.com/api/exercicios?populate=*', {
+                    headers: {
+                        Authorization: `Bearer ${token}`
+                    }
+                })
+                .then(response => {
+                    const loadedQuestions = response.data.data;
+                    setQuestions(loadedQuestions);
+                    setLoading(false);
+                    const randomQuestion = getRandomQuestion(loadedQuestions);
+                    setCurrentQuestion(randomQuestion);
+                })
+                .catch(error => {
+                    console.error(error);
+                    setLoading(false);
+                });
+        }, []);
+    
     //exit dialog
     const [visible, setVisible] = useState(false);
     const router = useRouter();
@@ -23,7 +53,7 @@ export default function Exercisepage() {
         setIsPlaying(false);
         setVisible(false);
         resetExercise();
-        router.push("/(tabs)");
+        router.push("/home");
     };
 
     const proceedPage = () => {
@@ -51,20 +81,40 @@ export default function Exercisepage() {
 
     function setInstrument(){
         setIsPlaying(!isPlaying);
-        isPlaying ? playInstrument(topic) : playInstrument(topic);
+        isPlaying ? playInstrument(currentQuestion?.topic) : playInstrument(currentQuestion?.topic);
     }
-    //exercise
+    //exercise progress
     const [selectedAnswer, setSelectedAnswer] = useState<string | null>(null);
     const [correctAnswer, setCorrectAnswer] = useState<boolean | null>(null);
 
     const handleAnswer = (id: string) => {
         if (selectedAnswer !== null) return; 
-        const selectedOption = options.find(option => option.id === id);
+        const selectedOption = currentQuestion?.option.find(option => option.id === id);
         if (selectedOption) {
             setSelectedAnswer(id);
             setCorrectAnswer(selectedOption.correct ? true : false);
         }
     };
+    //loading or no questions
+    if (loading) {
+        return (
+            <View style={styles.container}>
+                <Text variant="titleLarge">Carregando...</Text>
+            </View>
+        );
+    }
+
+    if (!currentQuestion) {
+        return (
+            <View style={styles.container}>
+                <Text variant="titleLarge" style={styles.errorText}>
+                    Não foi possível carregar o exercício.
+                </Text>
+            </View>
+        );
+    }
+    
+    //
 
     
     return (       
@@ -77,7 +127,7 @@ export default function Exercisepage() {
             <View style={styles.centralContentContainer}>
                 <View style={styles.exerciseInfosContainer}>
                     <Text variant='titleLarge' style={{color: Colors.light.brown}}>
-                        {question}
+                        {currentQuestion?.question}
                     </Text>
                     <Text variant='bodyMedium' style={{marginTop: 10, color: 'black'}}> 
                         Escute o som e escolha o instrumento correspondente.
@@ -85,11 +135,11 @@ export default function Exercisepage() {
                 </View>
 
                 <View>
-                    <FAB style={{backgroundColor: Colors.light.cian}} color={Colors.dark.cian} icon="music-note-eighth" size='large' onPress={() => setInstrument()}/>
+                    <FAB style={{backgroundColor: Colors.light.cian}} color={Colors.dark.cian} icon={isPlaying? "music-note-eighth":"pause-circle-outline"} size='large' onPress={() => setInstrument()}/>
                 </View>
 
                 <View style={styles.optionsContainer}>
-                    {options.map((option) => (
+                    {currentQuestion?.option.map((option) => (
                         <InstrumentButton
                             key={option.id}
                             InstrumentSize={120}
@@ -117,7 +167,7 @@ export default function Exercisepage() {
                         <Text>Ao sair do exercício, você perderá seu progresso!</Text>
                     </Dialog.Content>
                     <Dialog.Actions>
-                        <Button onPress={() => router.push("/(tabs)")}>Sair</Button>
+                        <Button onPress={() => router.push("/home")}>Sair</Button>
                         <Button onPress={() => setVisible(false)}>Permanecer</Button>
                     </Dialog.Actions>
                 </Dialog>
@@ -180,6 +230,11 @@ export default function Exercisepage() {
             position: 'absolute',
             top: 10,
             right: 10,
-          }
+          },
+
+          errorText: {
+            color: 'red',
+            fontSize: 18,
+        },
 
       });
