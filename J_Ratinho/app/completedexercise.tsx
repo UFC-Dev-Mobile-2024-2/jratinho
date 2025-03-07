@@ -19,8 +19,8 @@ export default function CompletedExercise() {
 
   const proceedPage = () => {
     console.log("proceeding");
-    router.push("/exercisepage");
-  };
+    router.push('/completedexercise');
+   };
 
   return (
     <View style={[styles.container, { backgroundColor: Colors.dark.green }]}>
