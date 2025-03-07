@@ -12,7 +12,7 @@ import { Colors } from '@/constants/Colors';
 import { exerciseData } from "@/fakedb/exerciseData";
 import { playInstrument } from "@/services/playInstrument";
 
-const token = 'c3f92ce5b43c5aa5489e86971ffb6be5c97cb32fa61e21fa42b93335f8132f0ccf3bc28aab9a67fd5bf11ccf4a139a7ed0b76c132b754857085572a1ed351154c6161c05e054e46dbeca80fc6eb7d33e33b8c82a4f24f7aa5c4967fe18c1ac3bd06d162ddf3b171c526f5d4aca32931ae0fdc3df8a169fb4647319ffd8294913'
+const token = 'dd40d5c313a14a7c10586fef30dd3a33de92666981e04be9a17c7b4b34ef9b0e8cb913e30cad5a504b5df838cc340e7df04e447e24cf11bbd91809cfc3eeb6e580580b526e8bf2017caceb2d801a4313dfc260b78461714a1ff40609fab244b32f630d45bbed44affafdb41769e84079558cf700d83a84c320a91d63515fa6bc'
 
 export default function Exercisepage() {
 
@@ -33,13 +33,14 @@ export default function Exercisepage() {
                 })
                 .then(response => {
                     const loadedQuestions = response.data.data;
-                    setQuestions(loadedQuestions);
+                    const filteredQuestions = loadedQuestions.filter((exerciseData: any) => exerciseData.topic.split(':')[0] === 'instrument');
+                    setQuestions(filteredQuestions);
                     setLoading(false);
-                    const randomQuestion = getRandomQuestion(loadedQuestions);
+                    const randomQuestion = getRandomQuestion(filteredQuestions);
                     setCurrentQuestion(randomQuestion);
                 })
                 .catch(error => {
-                    console.error(error);
+                    console.error('Error fetching questions:', error.response ? error.response.data : error.message);
                     setLoading(false);
                 });
         }, []);
@@ -81,7 +82,7 @@ export default function Exercisepage() {
 
     function setInstrument(){
         setIsPlaying(!isPlaying);
-        isPlaying ? playInstrument(currentQuestion?.topic) : playInstrument(currentQuestion?.topic);
+        isPlaying ? playInstrument(currentQuestion?.topic) : playInstrument(currentQuestion?.topic.split(':')[1]);
     }
     //exercise progress
     const [selectedAnswer, setSelectedAnswer] = useState<string | null>(null);
