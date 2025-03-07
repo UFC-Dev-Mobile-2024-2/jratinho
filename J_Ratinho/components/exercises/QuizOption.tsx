@@ -14,9 +14,9 @@ type OptionProps = {
 
 const QuizOption = (props: OptionProps) => (
     <View>
-        {props.OptionState === '' && <Button buttonColor={Colors.light.cian} mode='contained'>{props.OptionText}</Button>}
-        {props.OptionState === 'right' && <Button buttonColor={Colors.dark.green} mode='contained' onPress={() => props.onPress}>{props.OptionText}</Button>}
-        {props.OptionState === 'wrong' && <Button buttonColor={Colors.dark.red} mode='contained' onPress={() => props.onPress}>{props.OptionText}</Button>}
+        {props.OptionState === '' && <Button buttonColor={Colors.light.cian} mode='contained'onPress={props.onPress}>{props.OptionText}</Button>}
+        {props.OptionState === 'right' && <Button buttonColor={Colors.dark.green} mode='contained' onPress={props.onPress}>{props.OptionText}</Button>}
+        {props.OptionState === 'wrong' && <Button buttonColor={Colors.dark.red} mode='contained' onPress={props.onPress}>{props.OptionText}</Button>}
     </View>
 );
 

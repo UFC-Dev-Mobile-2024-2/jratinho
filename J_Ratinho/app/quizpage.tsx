@@ -1,6 +1,6 @@
 
 import React, { useState, useEffect } from "react";
-import { StyleSheet, View } from "react-native";
+import { StyleSheet, View, Image } from "react-native";
 import { FAB, Button, Dialog, Portal, PaperProvider, Text } from 'react-native-paper';
 import { useRouter } from "expo-router";
 import { Quiz } from '@/@types/declarations';
@@ -13,6 +13,7 @@ import ProgressButton from "@/components/exercises/ProgressButton";
 import ExitDialog from "@/components/exercises/ExitDialog";
 import QuizImage from "@/components/exercises/QuizImage";
 import { Colors } from "@/constants/Colors";
+import { black } from "react-native-paper/lib/typescript/styles/themes/v2/colors";
 
 const token = 'dd40d5c313a14a7c10586fef30dd3a33de92666981e04be9a17c7b4b34ef9b0e8cb913e30cad5a504b5df838cc340e7df04e447e24cf11bbd91809cfc3eeb6e580580b526e8bf2017caceb2d801a4313dfc260b78461714a1ff40609fab244b32f630d45bbed44affafdb41769e84079558cf700d83a84c320a91d63515fa6bc'
 export default function QuizPage() {
@@ -119,19 +120,23 @@ export default function QuizPage() {
             <Text variant="titleLarge" style={{ color: Colors.light.brown }}>
               Você sabe sobre a cidade?
             </Text>
-            <Text variant="bodyMedium" style={{ marginTop: 10 }}>
+            <Text variant="bodyMedium" style={{ marginTop: 10, color: "black" }}>
               Descobrindo curiosidades sobre Canindé
             </Text>
           </View>
 
           <View style={styles.exerciseInfosContainer}>
-            <QuizImage ImageSource="https://www.ceara.gov.br/wp-content/uploads/2022/07/20220701084811__MG_6302-scaled.jpeg" />
+          <Image
+              source={{ uri: `${currentQuiz?.image?.url}`|| 'https://via.placeholder.com/200' }}
+              style={{ width: 200, height: 200, borderRadius: 10, marginBottom: 10, borderColor: Colors.light.brown, borderWidth: 10 }}
+              accessibilityLabel={currentQuiz?.topic.split(':')[1] || "Imagem relacionada ao quiz."}
+            />
+
             <Text variant="titleLarge" style={{ color: Colors.light.brown }}>
-              A estátua de São Francisco
+              {currentQuiz?.subtitle}
             </Text>
-            <Text variant="bodyMedium" style={{ marginTop: 10, textAlign: "center" }}>
-              Em que ano foi inaugurada o Monumento de São Francisco na cidade de
-              Canindé?
+            <Text variant="bodyMedium" style={{ marginTop: 10, textAlign: "center", color: "black"}}>
+              {currentQuiz?.question}
             </Text>
           </View>
 
