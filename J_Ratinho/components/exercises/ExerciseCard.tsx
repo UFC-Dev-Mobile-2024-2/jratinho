@@ -14,6 +14,8 @@ type ExerciseCardProps = {
   MainColor: string;
   CoverColor: string;
   TextColor: string;
+  CardTitle: string;
+  CardContent: string;
 }
 
 const ExerciceCard = (props: ExerciseCardProps) => (
@@ -34,8 +36,8 @@ const ExerciceCard = (props: ExerciseCardProps) => (
       <Instrument InstrumentVariant={props.InstrumentVariant} InstrumentSize={props.InstrumentSize} InstrumentRotation={props.InstrumentRotation}></Instrument>
     </View>
     <Card.Content style={{ padding: 10 }}>
-      <Text style={[styles.cardTitle, {color: props.TextColor}]} variant="titleLarge">Card title</Text>
-      <Text style={{color: props.TextColor}} variant="bodyMedium">Card content</Text>
+      <Text style={[styles.cardTitle, {color: props.TextColor}]} variant="titleLarge">{props.CardTitle}</Text>
+      <Text style={{color: props.TextColor}} variant="bodyMedium">{props.CardContent}</Text>
     </Card.Content>
   </Card>
 );
@@ -45,6 +47,8 @@ const styles = StyleSheet.create({
     borderRadius: 10,
     overflow: 'hidden',
     marginTop: 15,
+    width: '100%',
+    height: 250,
   },
   customCardCover: {
     height: 150,

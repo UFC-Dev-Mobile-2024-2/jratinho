@@ -61,7 +61,10 @@ export default function QuizPage() {
         console.log("proceeding");
         setVisible(false);
         resetExercise();
-        router.push("/completedexercise");
+        router.push({
+          pathname: '/completedexercise',
+          params: { nextRoute: '/quizpage' }, 
+        });
     };
 
     const resetExercise = () => {
