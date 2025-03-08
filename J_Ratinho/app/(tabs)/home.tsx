@@ -29,7 +29,7 @@ export default function Index() {
     return (
         <View style={local.container}>
             <View style={local.header}>
-                <Logo LogoVariant="colored" LogoWidth={100}/>
+                {/* <Logo LogoVariant="colored" LogoWidth={100}/> */}
                 <Link style={local.profile} href="/profile">
                     <Avatar.Image  size={40} source={require("@/assets/images/rato.png")}/>
                 </Link>

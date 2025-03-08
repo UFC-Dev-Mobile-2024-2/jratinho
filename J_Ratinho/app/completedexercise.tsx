@@ -1,6 +1,6 @@
 import React from "react";
 import { StyleSheet, View, Platform } from "react-native";
-import {useRouter} from "expo-router";
+import {useRouter, useLocalSearchParams} from "expo-router";
 import { Button, FAB, Text } from "react-native-paper";
 
 import ExitDialog from "@/components/exercises/ExitDialog";
@@ -10,16 +10,23 @@ import { Colors } from "@/constants/Colors";
 
 export default function CompletedExercise() {
 
-  const router = useRouter();
+  const validRoutes = ["/home", "/quizpage", "/completedexercise", "/exercisepage"] as const;
+type ValidRoute = typeof validRoutes[number]; // Extract valid route types
 
+  const router = useRouter();
+  const params = useLocalSearchParams(); // Access route parameters
+  const nextRoute = (
+    typeof params.nextRoute === "string" && validRoutes.includes(params.nextRoute as ValidRoute)
+      ? (params.nextRoute as ValidRoute)
+      : "/home");
   const handleExit = () => {
     console.log("exiting");
-    router.push("/(tabs)");
+    router.push("/home");
   };
 
   const proceedPage = () => {
     console.log("proceeding");
-    router.push('/completedexercise');
+    router.push(nextRoute);
    };
 
   return (
