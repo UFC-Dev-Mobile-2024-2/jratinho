@@ -37,16 +37,16 @@ export default function Index() {
             <Text variant="headlineLarge">Bem vindo, {user.username}!</Text>
             <Text style={{marginBottom: 32, color:Colors.dark.brown}}variant="titleMedium">Vamos aprender e se divertir?</Text>
 
-            <Link href='/quizpage'>
-                <ExerciceCard InstrumentVariant='saxophone' InstrumentSize={200} InstrumentRotation='-30deg' MainColor={Colors.dark.orange} CoverColor={Colors.light.orange} TextColor='#ffffff'>
+            <Link href='/quizpage' style={local.link}>
+                <ExerciceCard CardTitle="Quizes" CardContent="Descubra Canindé!" InstrumentVariant='tuba' InstrumentSize={200} InstrumentRotation='-30deg' MainColor={Colors.dark.orange} CoverColor={Colors.light.orange} TextColor='#ffffff'>
                 </ExerciceCard>
             </Link>
-            <Link href='/exercisepage'>
-                <ExerciceCard InstrumentVariant='saxophone' InstrumentSize={200} InstrumentRotation='-30deg' MainColor={Colors.dark.orange} CoverColor={Colors.light.orange} TextColor='#ffffff'>
+            <Link href='/exercisepage' style={local.link}>
+                <ExerciceCard CardTitle="Praticar" CardContent="Descubra os timbres!" InstrumentVariant='saxophone' InstrumentSize={200} InstrumentRotation='-30deg' MainColor={Colors.dark.cian} CoverColor={Colors.light.cian} TextColor='#ffffff'>
                 </ExerciceCard>
             </Link>
-            <Link href='/playinginstrument'>
-                <ExerciceCard InstrumentVariant='saxophone' InstrumentSize={200} InstrumentRotation='-30deg' MainColor={Colors.dark.orange} CoverColor={Colors.light.orange} TextColor='#ffffff'>
+            <Link href='/playinginstrument' style={local.link}>
+                <ExerciceCard CardTitle="Teste instrumentos" CardContent="Experimente!" InstrumentVariant='clarinet' InstrumentSize={150} InstrumentRotation='-30deg' MainColor={Colors.dark.brown} CoverColor={Colors.light.brown} TextColor='#ffffff'>
                 </ExerciceCard>
             </Link>
         </View>
@@ -77,5 +77,9 @@ const local = StyleSheet.create({
         position: "absolute",
         marginTop: 9,
         right: 0,
+    }, 
+    link: {
+        width: "100%",
+        marginBottom: 16,
     }
 });

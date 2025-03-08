@@ -10,7 +10,8 @@ import { playInstrument } from '@/services/playInstrument';
 
 export default function PlayingInstrument() {
 
-    let instrument = 'clarinet';
+    let instruments = ['clarinet', 'transversal-flute', 'saxophone', 'tuba', 'trompet'];
+    let instrument = instruments[Math.floor(Math.random() * instruments.length)];
 
     //sound player
     const [sound, setSound] = useState<string | null>(null);
