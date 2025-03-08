@@ -62,7 +62,10 @@ export default function Exercisepage() {
         setIsPlaying(false);
         setVisible(false);
         resetExercise();
-        router.push("/completedexercise");
+        router.push({
+            pathname: '/completedexercise',
+            params: { nextRoute: '/exercisepage' },
+        });
     };
 
     const resetExercise = () => {
