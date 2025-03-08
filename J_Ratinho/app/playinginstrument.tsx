@@ -33,7 +33,7 @@ export default function PlayingInstrument() {
     const router = useRouter();
     const handleExit = () => {
             resetExercise();
-            router.push("/(tabs)");
+            router.push("/home");
     };
     const resetExercise = () => {
         setIsPlaying(false);
