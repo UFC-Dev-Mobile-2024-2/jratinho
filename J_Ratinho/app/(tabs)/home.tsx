@@ -5,20 +5,25 @@ import {Link} from "expo-router";
 import {styles} from "@/constants/styles";
 import {Colors} from "@/constants/Colors";
 import ExerciceCard from '@/components/exercises/ExerciseCard';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 export default function Index() {
-    const [user, setUser] = useState<{ username?: string}>({});
-//essa parte do código eu fiz apenas para trocar o nome usuario generico para o nome armazenado no localhost salvo no navegador, não é o ideal mas pra ficar mais ok.
+    const [user, setUser] = useState<{ username?: string }>({});
+    //agora eu vou usar o async storage para pegar o nome do usuário, o localhost n funciona em apk
     useEffect(() => {
-        try {
-        const user = localStorage.getItem("user");
-        if (user) {
-            setUser(JSON.parse(user));
-        }
-    } catch(error) {
-        console.error("erro ao carregar nome", error);
-    }
+        const loadUser = async () => {
+            try {
+                const storedUser = await AsyncStorage.getItem("user");
+                if (storedUser) {
+                    setUser(JSON.parse(storedUser));
+                }
+            } catch (error) {
+                console.error(error);
+            }
+        };
+        loadUser();
     }, []);
+        
 
     return (
         <View style={local.container}>

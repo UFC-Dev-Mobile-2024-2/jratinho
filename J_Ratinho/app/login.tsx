@@ -3,7 +3,7 @@ import { StyleSheet, View, TouchableOpacity, KeyboardAvoidingView, Platform, Ima
 import { Text, TextInput } from "react-native-paper";
 import { useRouter, router } from "expo-router";
 import axios from "axios";
-
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import { styles } from "@/constants/styles";
 import { Colors } from "@/constants/Colors";
 
@@ -26,8 +26,8 @@ export default function Login() {
 			});
 
 
-			localStorage.setItem("jwt", response.data.jwt);
-			localStorage.setItem("user", JSON.stringify(response.data.user));
+			await AsyncStorage.setItem("jwt", response.data.jwt);
+			await AsyncStorage.setItem("user", JSON.stringify(response.data.user));
 			router.replace("/home");
 		} catch (error) {
 			setError("E-mail ou senha incorretos");
