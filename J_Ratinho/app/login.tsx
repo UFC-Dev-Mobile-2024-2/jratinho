@@ -28,7 +28,7 @@ export default function Login() {
 
 			await AsyncStorage.setItem("jwt", response.data.jwt);
 			await AsyncStorage.setItem("user", JSON.stringify(response.data.user));
-			router.replace("/home");
+			router.replace("/splash");
 		} catch (error) {
 			setError("E-mail ou senha incorretos");
 			setLoading(false);
