@@ -6,6 +6,7 @@ import {styles} from "@/constants/styles";
 import {Colors} from "@/constants/Colors";
 import ExerciceCard from '@/components/exercises/ExerciseCard';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import Logo from "@/components/logos/Logos";
 
 export default function Index() {
     const [user, setUser] = useState<{ username?: string }>({});
@@ -28,18 +29,23 @@ export default function Index() {
     return (
         <View style={local.container}>
             <View style={local.header}>
+                <Logo LogoVariant="colored" LogoWidth={100}/>
                 <Link style={local.profile} href="/profile">
                     <Avatar.Image  size={40} source={require("@/assets/images/rato.png")}/>
                 </Link>
             </View>
             <Text variant="headlineLarge">Bem vindo, {user.username}!</Text>
-            <Text style={{marginBottom: 32}}variant="titleMedium">Vamos aprender e se divertir?</Text>
+            <Text style={{marginBottom: 32, color:Colors.dark.brown}}variant="titleMedium">Vamos aprender e se divertir?</Text>
 
             <Link href='/quizpage'>
                 <ExerciceCard InstrumentVariant='saxophone' InstrumentSize={200} InstrumentRotation='-30deg' MainColor={Colors.dark.orange} CoverColor={Colors.light.orange} TextColor='#ffffff'>
                 </ExerciceCard>
             </Link>
             <Link href='/exercisepage'>
+                <ExerciceCard InstrumentVariant='saxophone' InstrumentSize={200} InstrumentRotation='-30deg' MainColor={Colors.dark.orange} CoverColor={Colors.light.orange} TextColor='#ffffff'>
+                </ExerciceCard>
+            </Link>
+            <Link href='/playinginstrument'>
                 <ExerciceCard InstrumentVariant='saxophone' InstrumentSize={200} InstrumentRotation='-30deg' MainColor={Colors.dark.orange} CoverColor={Colors.light.orange} TextColor='#ffffff'>
                 </ExerciceCard>
             </Link>
@@ -52,14 +58,14 @@ const local = StyleSheet.create({
         flex: 1,
         paddingLeft: 16,
         paddingRight: 16,
-        
+        alignItems: "center",
     },
     header: {
         paddingTop: 32,
         flexDirection: "row",
         alignItems: "center",
         position: "relative",
-        marginBottom: -18,
+        marginBottom: 30,
     },
     card: {
         marginTop: 16,
